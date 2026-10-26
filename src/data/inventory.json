@@ -1,0 +1,1373 @@
+[
+  {
+    "id": "sony-a7-iv",
+    "name": "Sony A7 IV",
+    "brand": "Sony",
+    "category": "fotografia-video",
+    "tagline": "Híbrida full-frame para foto y video 4K",
+    "description": "Cámara mirrorless full-frame de 33 MP con enfoque automático en tiempo real y video 4K 60p 10-bit. Ideal para bodas, documentales y contenido profesional.",
+    "dailyRate": 65,
+    "deposit": 800,
+    "rating": 4.9,
+    "reviewCount": 214,
+    "location": "Ciudad de México",
+    "specs": {
+      "Sensor": "Full-frame 33 MP",
+      "Video": "4K 60p 10-bit 4:2:2",
+      "Montura": "Sony E",
+      "Estabilización": "IBIS 5 ejes",
+      "Peso": "658 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1606986628470-26a67fa4730c?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8U29ueSUyMEE3JTIwSVZ8ZW58MHx8fHwxNzkzMDUzNDU4fDA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Brent Ninaber",
+      "profileUrl": "https://unsplash.com/@brentninaber?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/black-and-silver-nikon-dslr-camera-6qesnUQceJA?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 3,
+        "lengthDays": 4
+      },
+      {
+        "startInDays": 18,
+        "lengthDays": 3
+      }
+    ]
+  },
+  {
+    "id": "canon-eos-r5",
+    "name": "Canon EOS R5",
+    "brand": "Canon",
+    "category": "fotografia-video",
+    "tagline": "45 MP y video 8K RAW",
+    "description": "Buque insignia de Canon con sensor de 45 MP, ráfagas de 20 fps y grabación 8K RAW interna. Perfecta para fotografía comercial y cine independiente.",
+    "dailyRate": 85,
+    "deposit": 1200,
+    "rating": 4.8,
+    "reviewCount": 167,
+    "location": "Miami",
+    "specs": {
+      "Sensor": "Full-frame 45 MP",
+      "Video": "8K RAW / 4K 120p",
+      "Montura": "Canon RF",
+      "Ráfaga": "20 fps",
+      "Peso": "738 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1599721593370-aaeb5c29fcfe?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8Q2Fub24lMjBFT1MlMjBSNXxlbnwwfHx8fDE3OTMwNTM0NTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Robin McSkelly",
+      "profileUrl": "https://unsplash.com/@robinmcskelly?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/black-nikon-dslr-camera-on-black-surface-YAiTbUVChvs?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 7,
+        "lengthDays": 5
+      }
+    ]
+  },
+  {
+    "id": "fujifilm-x-t5",
+    "name": "Fujifilm X-T5",
+    "brand": "Fujifilm",
+    "category": "fotografia-video",
+    "tagline": "40 MP con alma analógica",
+    "description": "Cuerpo compacto con diales clásicos, sensor APS-C de 40 MP y simulaciones de película legendarias para fotografía de viaje y calle.",
+    "dailyRate": 45,
+    "deposit": 600,
+    "rating": 4.9,
+    "reviewCount": 98,
+    "location": "Guadalajara",
+    "specs": {
+      "Sensor": "APS-C 40 MP",
+      "Video": "6.2K 30p",
+      "Montura": "Fujifilm X",
+      "Estabilización": "IBIS 7 pasos",
+      "Peso": "557 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1673064328883-763275b48124?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8RnVqaWZpbG0lMjBYLVQ1fGVufDB8fHx8MTc5MzA1MzQ1OXww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Alex Quezada",
+      "profileUrl": "https://unsplash.com/@alex_quezada?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-black-camera-sitting-on-top-of-a-gray-blanket-P5n5ULjGi6w?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "sony-fx3",
+    "name": "Sony FX3",
+    "brand": "Sony",
+    "category": "fotografia-video",
+    "tagline": "Cine full-frame en formato compacto",
+    "description": "Cámara de la línea Cinema Line con sensor full-frame, ventilación activa y S-Cinetone. La favorita para producciones ligeras y comerciales.",
+    "dailyRate": 120,
+    "deposit": 1800,
+    "rating": 4.9,
+    "reviewCount": 143,
+    "location": "Los Ángeles",
+    "specs": {
+      "Sensor": "Full-frame 12 MP",
+      "Video": "4K 120p 10-bit",
+      "ISO dual": "800 / 12800",
+      "Montura": "Sony E",
+      "Peso": "715 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1606986628470-26a67fa4730c?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8U29ueSUyMEZYM3xlbnwwfHx8fDE3OTMwNTM0NTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Brent Ninaber",
+      "profileUrl": "https://unsplash.com/@brentninaber?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/black-and-silver-nikon-dslr-camera-6qesnUQceJA?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 1,
+        "lengthDays": 3
+      },
+      {
+        "startInDays": 12,
+        "lengthDays": 6
+      }
+    ]
+  },
+  {
+    "id": "blackmagic-pocket-6k-pro",
+    "name": "Blackmagic Pocket Cinema Camera 6K Pro",
+    "brand": "Blackmagic Design",
+    "category": "fotografia-video",
+    "tagline": "Blackmagic RAW con filtros ND integrados",
+    "description": "Cámara de cine Super 35 con grabación Blackmagic RAW, filtros ND motorizados y pantalla abatible de alto brillo.",
+    "dailyRate": 95,
+    "deposit": 1300,
+    "rating": 4.7,
+    "reviewCount": 76,
+    "location": "Ciudad de México",
+    "specs": {
+      "Sensor": "Super 35 6K",
+      "Códec": "Blackmagic RAW / ProRes",
+      "Montura": "Canon EF",
+      "Filtros ND": "2, 4 y 6 pasos",
+      "Rango dinámico": "13 pasos"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 5,
+        "lengthDays": 2
+      }
+    ]
+  },
+  {
+    "id": "red-komodo-6k",
+    "name": "RED Komodo 6K",
+    "brand": "RED",
+    "category": "fotografia-video",
+    "tagline": "Obturador global en un cubo de cine",
+    "description": "Cámara de cine compacta con sensor de obturador global 6K y grabación REDCODE RAW. Calidad de largometraje en un cuerpo de 1 kg.",
+    "dailyRate": 250,
+    "deposit": 4000,
+    "rating": 4.8,
+    "reviewCount": 41,
+    "location": "Los Ángeles",
+    "specs": {
+      "Sensor": "S35 6K global shutter",
+      "Códec": "REDCODE RAW",
+      "Montura": "Canon RF",
+      "Rango dinámico": "16+ pasos",
+      "Peso": "950 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1704688618021-557e23d44850?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8UkVEJTIwS29tb2RvJTIwNkt8ZW58MHx8fHwxNzkzMDUzNDYwfDA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Asafh Kalebe",
+      "profileUrl": "https://unsplash.com/@asafhkalebe?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-group-of-people-standing-around-a-room-pVSIuA3tJ4M?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 9,
+        "lengthDays": 7
+      }
+    ]
+  },
+  {
+    "id": "canon-rf-24-70-f28",
+    "name": "Canon RF 24-70mm f/2.8L IS USM",
+    "brand": "Canon",
+    "category": "fotografia-video",
+    "tagline": "El zoom estándar profesional",
+    "description": "Lente zoom luminoso y estabilizado, imprescindible para eventos, retratos y video documental con monturas RF.",
+    "dailyRate": 35,
+    "deposit": 500,
+    "rating": 4.9,
+    "reviewCount": 188,
+    "location": "Miami",
+    "specs": {
+      "Distancia focal": "24-70 mm",
+      "Apertura": "f/2.8 constante",
+      "Estabilización": "5 pasos",
+      "Montura": "Canon RF",
+      "Peso": "900 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1665392017160-2275f26dff0d?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8Q2Fub24lMjBSRiUyMDI0LTcwbW0lMjBmJTJGMi44TCUyMElTJTIwVVNNfGVufDB8fHx8MTc5MzA1MzQ2MHww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "STUDIO96FR",
+      "profileUrl": "https://unsplash.com/@studio96fr?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-camera-lens-on-a-table-BvaHETECLF4?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "sony-fe-70-200-gm-ii",
+    "name": "Sony FE 70-200mm f/2.8 GM OSS II",
+    "brand": "Sony",
+    "category": "fotografia-video",
+    "tagline": "Teleobjetivo G Master ultraligero",
+    "description": "Teleobjetivo luminoso con enfoque ultrarrápido para deportes, retratos y fauna. 29% más ligero que su antecesor.",
+    "dailyRate": 45,
+    "deposit": 700,
+    "rating": 4.9,
+    "reviewCount": 121,
+    "location": "Ciudad de México",
+    "specs": {
+      "Distancia focal": "70-200 mm",
+      "Apertura": "f/2.8 constante",
+      "Motores AF": "4 XD Linear",
+      "Montura": "Sony E",
+      "Peso": "1045 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1606986628470-26a67fa4730c?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8U29ueSUyMEZFJTIwNzAtMjAwbW0lMjBmJTJGMi44JTIwR00lMjBPU1MlMjBJSXxlbnwwfHx8fDE3OTMwNTM0NjF8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Brent Ninaber",
+      "profileUrl": "https://unsplash.com/@brentninaber?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/black-and-silver-nikon-dslr-camera-6qesnUQceJA?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 2,
+        "lengthDays": 2
+      }
+    ]
+  },
+  {
+    "id": "sigma-35-f14-art",
+    "name": "Sigma 35mm f/1.4 DG DN Art",
+    "brand": "Sigma",
+    "category": "fotografia-video",
+    "tagline": "Nitidez extrema y bokeh cremoso",
+    "description": "Lente fijo luminoso de la serie Art, ideal para retrato ambiental, bodas y video con poca luz.",
+    "dailyRate": 22,
+    "deposit": 300,
+    "rating": 4.8,
+    "reviewCount": 87,
+    "location": "Guadalajara",
+    "specs": {
+      "Distancia focal": "35 mm",
+      "Apertura": "f/1.4",
+      "Montura": "Sony E / L-Mount",
+      "Diafragma": "11 hojas",
+      "Peso": "645 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1786180515029-22cbeeb2f922?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8U2lnbWElMjAzNW1tJTIwZiUyRjEuNCUyMERHJTIwRE4lMjBBcnR8ZW58MHx8fHwxNzkzMDUzNDYxfDA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Sirius Harrison",
+      "profileUrl": "https://unsplash.com/@siriusharrison?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/silver-camera-lens-on-dark-box-txQic37XIw4?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "dji-ronin-4d",
+    "name": "DJI Ronin 4D",
+    "brand": "DJI",
+    "category": "fotografia-video",
+    "tagline": "Cámara de cine con gimbal de 4 ejes",
+    "description": "Sistema de cine integrado con estabilización de 4 ejes, enfoque LiDAR y transmisión inalámbrica. Movimiento cinematográfico sin rigs adicionales.",
+    "dailyRate": 320,
+    "deposit": 5000,
+    "rating": 4.8,
+    "reviewCount": 29,
+    "location": "Los Ángeles",
+    "specs": {
+      "Sensor": "Zenmuse X9 6K full-frame",
+      "Estabilización": "4 ejes activos",
+      "Enfoque": "LiDAR",
+      "Transmisión": "20 000 m",
+      "Códec": "ProRes RAW"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 4,
+        "lengthDays": 3
+      }
+    ]
+  },
+  {
+    "id": "dji-rs-4-pro",
+    "name": "DJI RS 4 Pro",
+    "brand": "DJI",
+    "category": "fotografia-video",
+    "tagline": "Gimbal para cámaras de cine ligeras",
+    "description": "Estabilizador de 3 ejes con capacidad de 4.5 kg, modo vertical nativo y seguimiento inteligente ActiveTrack Pro.",
+    "dailyRate": 40,
+    "deposit": 500,
+    "rating": 4.7,
+    "reviewCount": 112,
+    "location": "Ciudad de México",
+    "specs": {
+      "Carga útil": "4.5 kg",
+      "Ejes": "3",
+      "Batería": "13 h",
+      "Seguimiento": "ActiveTrack Pro",
+      "Peso": "1.6 kg"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1643917369623-008727d1a7d5?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8REpJJTIwUlMlMjA0JTIwUHJvfGVufDB8fHx8MTc5MzA1MzQ2MXww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Vladislav Smigelski",
+      "profileUrl": "https://unsplash.com/@vladislavsmigelski?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-close-up-of-a-camera-on-a-tripod-7JWkof0gE4U?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "dji-mavic-3-pro",
+    "name": "DJI Mavic 3 Pro",
+    "brand": "DJI",
+    "category": "fotografia-video",
+    "tagline": "Dron con triple cámara Hasselblad",
+    "description": "Dron plegable con tres cámaras, incluyendo sensor Hasselblad 4/3 y teleobjetivo 7x. 43 minutos de vuelo para tomas aéreas de cine.",
+    "dailyRate": 75,
+    "deposit": 1200,
+    "rating": 4.9,
+    "reviewCount": 156,
+    "location": "Cancún",
+    "specs": {
+      "Cámara principal": "Hasselblad 4/3 20 MP",
+      "Video": "5.1K 50p",
+      "Autonomía": "43 min",
+      "Alcance": "15 km",
+      "Peso": "958 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1667822339262-bf66ed5531a2?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8REpJJTIwTWF2aWMlMjAzJTIwUHJvfGVufDB8fHx8MTc5MzA1MzQ2Mnww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Weichao Deng",
+      "profileUrl": "https://unsplash.com/@juniperphoton?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-helicopter-flying-in-the-sky-yO8KkZ8nsEc?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 6,
+        "lengthDays": 4
+      },
+      {
+        "startInDays": 20,
+        "lengthDays": 2
+      }
+    ]
+  },
+  {
+    "id": "aputure-ls-600d-pro",
+    "name": "Aputure LS 600d Pro",
+    "brand": "Aputure",
+    "category": "fotografia-video",
+    "tagline": "600 W de luz de día para cine",
+    "description": "Foco LED de luz de día con potencia equivalente a un HMI de 1200 W, resistente a la intemperie y control vía app Sidus Link.",
+    "dailyRate": 70,
+    "deposit": 900,
+    "rating": 4.8,
+    "reviewCount": 64,
+    "location": "Ciudad de México",
+    "specs": {
+      "Potencia": "600 W",
+      "Temperatura": "5600 K",
+      "Montura": "Bowens",
+      "Protección": "IP54",
+      "Control": "DMX / Sidus Link"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "godox-ad600-pro",
+    "name": "Godox AD600 Pro",
+    "brand": "Godox",
+    "category": "fotografia-video",
+    "tagline": "Flash de estudio portátil de 600 Ws",
+    "description": "Flash con batería de litio, sincronización de alta velocidad y TTL. Potencia de estudio en exteriores.",
+    "dailyRate": 30,
+    "deposit": 350,
+    "rating": 4.7,
+    "reviewCount": 93,
+    "location": "Monterrey",
+    "specs": {
+      "Potencia": "600 Ws",
+      "Disparos por carga": "360 a máxima potencia",
+      "Reciclado": "0.01-0.9 s",
+      "HSS": "Hasta 1/8000 s",
+      "Montura": "Godox"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1745848038079-3c02ebc6a179?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8R29kb3glMjBBRDYwMCUyMFByb3xlbnwwfHx8fDE3OTMwNTM0NjJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "dlxmedia.hu",
+      "profileUrl": "https://unsplash.com/@dlxmedia?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-godox-light-shows-its-power-level-FavTI4FDN-0?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 10,
+        "lengthDays": 2
+      }
+    ]
+  },
+  {
+    "id": "rode-ntg5-kit",
+    "name": "Røde NTG5 Kit",
+    "brand": "Røde",
+    "category": "fotografia-video",
+    "tagline": "Micrófono shotgun broadcast",
+    "description": "Micrófono de cañón ultraligero con kit completo de pértiga, zepelín y antiviento. Audio de nivel broadcast para cine y entrevistas.",
+    "dailyRate": 28,
+    "deposit": 300,
+    "rating": 4.8,
+    "reviewCount": 71,
+    "location": "Guadalajara",
+    "specs": {
+      "Patrón": "Supercardioide",
+      "Respuesta": "20 Hz - 20 kHz",
+      "Peso": "76 g",
+      "Incluye": "Pértiga, zepelín, cable XLR",
+      "Alimentación": "Phantom 48 V"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1584723602034-2d5716f700a1?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8UiVDMyVCOGRlJTIwTlRHNSUyMEtpdHxlbnwwfHx8fDE3OTMwNTM0NjN8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Aram Sabah",
+      "profileUrl": "https://unsplash.com/@aramsabah?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/black-and-orange-unk-2-1IWpe2d2mmA?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "atomos-ninja-v-plus",
+    "name": "Atomos Ninja V+",
+    "brand": "Atomos",
+    "category": "fotografia-video",
+    "tagline": "Monitor-grabador 8K ProRes RAW",
+    "description": "Monitor HDR de 5\" y 1000 nits que graba ProRes RAW hasta 8K. Amplía las capacidades de tu cámara sin limitaciones.",
+    "dailyRate": 38,
+    "deposit": 450,
+    "rating": 4.6,
+    "reviewCount": 52,
+    "location": "Miami",
+    "specs": {
+      "Pantalla": "5.2\" 1000 nits",
+      "Grabación": "8K30 ProRes RAW",
+      "Entradas": "HDMI 2.0",
+      "Almacenamiento": "SSD AtomX",
+      "Peso": "360 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1653998894571-ae645e479e86?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8QXRvbW9zJTIwTmluamElMjBWJTJCfGVufDB8fHx8MTc5MzA1MzQ2M3ww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "TheRegisti",
+      "profileUrl": "https://unsplash.com/@theregisti?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-close-up-of-a-camera-on-a-tripod-atrUgLCXAlo?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "insta360-x4",
+    "name": "Insta360 X4",
+    "brand": "Insta360",
+    "category": "fotografia-video",
+    "tagline": "Cámara 360° en 8K",
+    "description": "Cámara 360 con video 8K, palo invisible y reencuadre con IA. Perfecta para viajes, deportes y contenido inmersivo.",
+    "dailyRate": 25,
+    "deposit": 250,
+    "rating": 4.7,
+    "reviewCount": 134,
+    "location": "Cancún",
+    "specs": {
+      "Video": "8K 30p 360°",
+      "Sumergible": "10 m",
+      "Batería": "135 min",
+      "Estabilización": "FlowState",
+      "Peso": "203 g"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1689435505430-b4fda78d10ff?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8SW5zdGEzNjAlMjBYNHxlbnwwfHx8fDE3OTMwNTM0NjR8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Eduardo Gorghetto",
+      "profileUrl": "https://unsplash.com/@egorghetto?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-small-camera-sitting-on-top-of-a-wooden-table-5hf9WmUstcc?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 0,
+        "lengthDays": 2
+      }
+    ]
+  },
+  {
+    "id": "msr-hubba-hubba-2",
+    "name": "MSR Hubba Hubba 2",
+    "brand": "MSR",
+    "category": "montana-camping",
+    "tagline": "Tienda ultraligera para dos",
+    "description": "Tienda de mochilero autoportante de tres estaciones con dos puertas y vestíbulos amplios. Montaje rápido y gran ventilación.",
+    "dailyRate": 18,
+    "deposit": 150,
+    "rating": 4.8,
+    "reviewCount": 203,
+    "location": "Ciudad de México",
+    "specs": {
+      "Capacidad": "2 personas",
+      "Peso": "1.54 kg",
+      "Estaciones": "3",
+      "Altura interior": "100 cm",
+      "Puertas": "2"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 2,
+        "lengthDays": 3
+      },
+      {
+        "startInDays": 14,
+        "lengthDays": 4
+      }
+    ]
+  },
+  {
+    "id": "big-agnes-copper-spur-ul3",
+    "name": "Big Agnes Copper Spur HV UL3",
+    "brand": "Big Agnes",
+    "category": "montana-camping",
+    "tagline": "Espacio para tres, peso mínimo",
+    "description": "Tienda galardonada con estructura de paredes verticales y toldos convertibles en marquesina. Ideal para travesías de varios días.",
+    "dailyRate": 24,
+    "deposit": 200,
+    "rating": 4.9,
+    "reviewCount": 119,
+    "location": "Monterrey",
+    "specs": {
+      "Capacidad": "3 personas",
+      "Peso": "1.81 kg",
+      "Estaciones": "3",
+      "Superficie": "3.8 m²",
+      "Puertas": "2"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "hilleberg-nammatj-3",
+    "name": "Hilleberg Nammatj 3",
+    "brand": "Hilleberg",
+    "category": "montana-camping",
+    "tagline": "Tienda de expedición para todo clima",
+    "description": "Tienda túnel de cuatro estaciones fabricada en Suecia, diseñada para vientos fuertes y nieve. Confianza total en alta montaña.",
+    "dailyRate": 45,
+    "deposit": 500,
+    "rating": 4.9,
+    "reviewCount": 37,
+    "location": "Bogotá",
+    "specs": {
+      "Capacidad": "3 personas",
+      "Peso": "3.2 kg",
+      "Estaciones": "4",
+      "Tejido": "Kerlon 1800",
+      "Montaje": "Toldo e interior juntos"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1655481608284-7e50133af290?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8SGlsbGViZXJnJTIwTmFtbWF0aiUyMDN8ZW58MHx8fHwxNzkzMDUzNDY1fDA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Darshan Danecha",
+      "profileUrl": "https://unsplash.com/@darsh11192?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-couple-of-tents-in-the-snow-Dd1FxhlkOHw?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 8,
+        "lengthDays": 10
+      }
+    ]
+  },
+  {
+    "id": "osprey-aether-65",
+    "name": "Osprey Aether 65",
+    "brand": "Osprey",
+    "category": "montana-camping",
+    "tagline": "Mochila de travesía con ajuste personalizado",
+    "description": "Mochila de 65 litros con suspensión ajustable, cinturón moldeable y tapa convertible en mochila de ataque.",
+    "dailyRate": 15,
+    "deposit": 120,
+    "rating": 4.8,
+    "reviewCount": 176,
+    "location": "Ciudad de México",
+    "specs": {
+      "Volumen": "65 L",
+      "Peso": "2.4 kg",
+      "Carga recomendada": "Hasta 27 kg",
+      "Acceso": "Superior, frontal y lateral",
+      "Hidratación": "Compatible"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1753166825475-6b956164e195?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8T3NwcmV5JTIwQWV0aGVyJTIwNjV8ZW58MHx8fHwxNzkzMDUzNDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Tanya Nikan",
+      "profileUrl": "https://unsplash.com/@nikan_tanya?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/an-osprey-backpack-is-shown-with-a-dog-y5nEkhjLj-U?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "gregory-baltoro-75",
+    "name": "Gregory Baltoro 75",
+    "brand": "Gregory",
+    "category": "montana-camping",
+    "tagline": "Comodidad para cargas pesadas",
+    "description": "Mochila de expedición con sistema de suspensión Response A3 que se adapta al movimiento. Incluye mochila de hidratación desmontable.",
+    "dailyRate": 17,
+    "deposit": 140,
+    "rating": 4.7,
+    "reviewCount": 88,
+    "location": "Guadalajara",
+    "specs": {
+      "Volumen": "75 L",
+      "Peso": "2.3 kg",
+      "Carga recomendada": "Hasta 30 kg",
+      "Suspensión": "Response A3",
+      "Extra": "Daypack desmontable"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1617117437811-a5620436cf77?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8R3JlZ29yeSUyMEJhbHRvcm8lMjA3NXxlbnwwfHx8fDE3OTMwNTM0NjZ8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Ali Kazal",
+      "profileUrl": "https://unsplash.com/@lureofadventure?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/orange-and-white-round-pin-FP1Rqi1f4zc?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": [
+      {
+        "startInDays": 5,
+        "lengthDays": 5
+      }
+    ]
+  },
+  {
+    "id": "western-mountaineering-versalite",
+    "name": "Western Mountaineering VersaLite",
+    "brand": "Western Mountaineering",
+    "category": "montana-camping",
+    "tagline": "Saco de plumón 850+ hasta -7 °C",
+    "description": "Saco de dormir de plumón premium, compresible y extremadamente cálido para su peso. Confort en noches frías de alta montaña.",
+    "dailyRate": 20,
+    "deposit": 200,
+    "rating": 4.9,
+    "reviewCount": 64,
+    "location": "Bogotá",
+    "specs": {
+      "Temperatura": "-7 °C",
+      "Relleno": "Plumón 850+ FP",
+      "Peso": "0.88 kg",
+      "Forma": "Momia",
+      "Longitud": "183 cm"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "therm-a-rest-neoair-xtherm",
+    "name": "Therm-a-Rest NeoAir XTherm NXT",
+    "brand": "Therm-a-Rest",
+    "category": "montana-camping",
+    "tagline": "Aislante inflable R 7.3",
+    "description": "Colchoneta inflable de cuatro estaciones con el mayor ratio calor-peso del mercado. Ideal para acampar sobre nieve.",
+    "dailyRate": 10,
+    "deposit": 90,
+    "rating": 4.8,
+    "reviewCount": 142,
+    "location": "Ciudad de México",
+    "specs": {
+      "Valor R": "7.3",
+      "Peso": "440 g",
+      "Grosor": "7.6 cm",
+      "Longitud": "183 cm",
+      "Inflado": "Bolsa Pump Sack"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "jetboil-flash",
+    "name": "Jetboil Flash",
+    "brand": "Jetboil",
+    "category": "montana-camping",
+    "tagline": "Agua hirviendo en 100 segundos",
+    "description": "Sistema de cocina integrado con indicador de temperatura y encendido piezoeléctrico. Rápido, eficiente y compacto.",
+    "dailyRate": 8,
+    "deposit": 60,
+    "rating": 4.7,
+    "reviewCount": 231,
+    "location": "Monterrey",
+    "specs": {
+      "Capacidad": "1 L",
+      "Tiempo de hervor": "100 s",
+      "Peso": "371 g",
+      "Encendido": "Piezoeléctrico",
+      "Combustible": "Isobutano"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1662148460486-c8ca9372e13e?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8SmV0Ym9pbCUyMEZsYXNofGVufDB8fHx8MTc5MzA1MzQ2N3ww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Johnny Vigersten",
+      "profileUrl": "https://unsplash.com/@johnnyvigersten?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-small-black-and-red-object-Ldt2CBknVJ4?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "msr-whisperlite-universal",
+    "name": "MSR WhisperLite Universal",
+    "brand": "MSR",
+    "category": "montana-camping",
+    "tagline": "Estufa multicombustible de expedición",
+    "description": "Estufa legendaria que funciona con gas, gasolina blanca, queroseno o diésel. Fiable en cualquier rincón del mundo.",
+    "dailyRate": 9,
+    "deposit": 80,
+    "rating": 4.6,
+    "reviewCount": 58,
+    "location": "Bogotá",
+    "specs": {
+      "Combustibles": "Gas, gasolina, queroseno",
+      "Peso": "314 g",
+      "Tiempo de hervor": "3.5 min / L",
+      "Uso": "Expedición",
+      "Mantenimiento": "Kit incluido"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "black-diamond-distance-carbon-z",
+    "name": "Black Diamond Distance Carbon Z",
+    "brand": "Black Diamond",
+    "category": "montana-camping",
+    "tagline": "Bastones de carbono plegables",
+    "description": "Bastones de trekking ultraligeros de fibra de carbono con sistema de plegado rápido Z-Pole. Perfectos para trail y travesía.",
+    "dailyRate": 7,
+    "deposit": 60,
+    "rating": 4.7,
+    "reviewCount": 97,
+    "location": "Ciudad de México",
+    "specs": {
+      "Material": "Fibra de carbono",
+      "Peso (par)": "290 g",
+      "Longitud": "120 cm",
+      "Plegado": "Z-Pole 3 secciones",
+      "Empuñadura": "Espuma EVA"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1723685864857-6880b5e47a73?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8QmxhY2slMjBEaWFtb25kJTIwRGlzdGFuY2UlMjBDYXJib24lMjBafGVufDB8fHx8MTc5MzA1MzQ2OHww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Noel Oviedo",
+      "profileUrl": "https://unsplash.com/@bad_noel?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-bunch-of-tools-that-are-in-a-box-FgRLFZ8UsOc?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "black-diamond-sprinter-500",
+    "name": "Black Diamond Sprinter 500",
+    "brand": "Black Diamond",
+    "category": "montana-camping",
+    "tagline": "Linterna frontal recargable para trail",
+    "description": "Frontal de 500 lúmenes con batería recargable trasera para mejor equilibrio. Diseñada para correr y escalar de noche.",
+    "dailyRate": 6,
+    "deposit": 40,
+    "rating": 4.5,
+    "reviewCount": 44,
+    "location": "Guadalajara",
+    "specs": {
+      "Potencia": "500 lm",
+      "Batería": "Li-ion recargable",
+      "Autonomía": "Hasta 30 h",
+      "Protección": "IPX4",
+      "Peso": "115 g"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "petzl-sirocco-helmet",
+    "name": "Petzl Sirocco",
+    "brand": "Petzl",
+    "category": "montana-camping",
+    "tagline": "Casco de escalada ultraligero",
+    "description": "Casco de espuma EPP de 170 g con protección superior, lateral y trasera. Para escalada, alpinismo y vías ferratas.",
+    "dailyRate": 7,
+    "deposit": 50,
+    "rating": 4.8,
+    "reviewCount": 103,
+    "location": "Monterrey",
+    "specs": {
+      "Peso": "170 g",
+      "Material": "Espuma EPP",
+      "Talla": "53-61 cm",
+      "Certificación": "EN 12492 / UIAA",
+      "Linterna": "Clips compatibles"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1674558347023-039f77d95409?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8UGV0emwlMjBTaXJvY2NvfGVufDB8fHx8MTc5MzA1MzQ2OHww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Elliott Ledain",
+      "profileUrl": "https://unsplash.com/@ledainelliott?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-close-up-view-of-a-bike-handle-cLWwp4Svv-Q?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "grivel-g14-crampons",
+    "name": "Grivel G14 Crampones",
+    "brand": "Grivel",
+    "category": "montana-camping",
+    "tagline": "Crampones técnicos para hielo y mixto",
+    "description": "Crampones de acero cromo-molibdeno con puntas frontales intercambiables. Precisión para cascadas de hielo y alpinismo técnico.",
+    "dailyRate": 14,
+    "deposit": 120,
+    "rating": 4.8,
+    "reviewCount": 39,
+    "location": "Bogotá",
+    "specs": {
+      "Material": "Acero Cr-Mo",
+      "Puntas": "14",
+      "Fijación": "Automática New-Matic",
+      "Peso (par)": "1.07 kg",
+      "Uso": "Hielo técnico / mixto"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 11,
+        "lengthDays": 6
+      }
+    ]
+  },
+  {
+    "id": "garmin-inreach-mini-2",
+    "name": "Garmin inReach Mini 2",
+    "brand": "Garmin",
+    "category": "montana-camping",
+    "tagline": "Comunicador satelital SOS",
+    "description": "Mensajería bidireccional y SOS interactivo vía la red satelital Iridium. Seguridad en zonas sin cobertura celular.",
+    "dailyRate": 12,
+    "deposit": 200,
+    "rating": 4.7,
+    "reviewCount": 81,
+    "location": "Ciudad de México",
+    "specs": {
+      "Red": "Iridium global",
+      "Batería": "Hasta 14 días",
+      "Funciones": "SOS, mensajes, tracking",
+      "Resistencia": "IPX7",
+      "Peso": "100 g"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "helinox-chair-one",
+    "name": "Helinox Chair One",
+    "brand": "Helinox",
+    "category": "montana-camping",
+    "tagline": "Silla de campamento de 960 g",
+    "description": "Silla plegable con estructura de aluminio DAC que soporta 145 kg y cabe en una funda del tamaño de una botella.",
+    "dailyRate": 5,
+    "deposit": 40,
+    "rating": 4.8,
+    "reviewCount": 167,
+    "location": "Guadalajara",
+    "specs": {
+      "Peso": "960 g",
+      "Carga máxima": "145 kg",
+      "Estructura": "Aluminio DAC",
+      "Plegada": "35 × 10 × 12 cm",
+      "Montaje": "Menos de 1 min"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "goal-zero-yeti-500x",
+    "name": "Goal Zero Yeti 500X",
+    "brand": "Goal Zero",
+    "category": "montana-camping",
+    "tagline": "Estación de energía portátil",
+    "description": "Batería de 505 Wh con salidas AC, USB-C PD y 12 V. Recargable con panel solar para campamentos prolongados.",
+    "dailyRate": 22,
+    "deposit": 250,
+    "rating": 4.6,
+    "reviewCount": 53,
+    "location": "Monterrey",
+    "specs": {
+      "Capacidad": "505 Wh",
+      "Salida AC": "300 W",
+      "USB-C": "60 W PD",
+      "Peso": "5.8 kg",
+      "Carga solar": "Hasta 120 W"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 3,
+        "lengthDays": 3
+      }
+    ]
+  },
+  {
+    "id": "la-sportiva-nepal-evo-gtx",
+    "name": "La Sportiva Nepal Evo GTX",
+    "brand": "La Sportiva",
+    "category": "montana-camping",
+    "tagline": "Bota de alta montaña con Gore-Tex",
+    "description": "Bota de alpinismo de cuero impermeable compatible con crampones automáticos. Un clásico para cumbres nevadas y glaciares.",
+    "dailyRate": 18,
+    "deposit": 200,
+    "rating": 4.8,
+    "reviewCount": 72,
+    "location": "Bogotá",
+    "specs": {
+      "Membrana": "Gore-Tex Insulated",
+      "Material": "Cuero Perwanger 3 mm",
+      "Crampones": "Automáticos",
+      "Suela": "Vibram",
+      "Peso (par)": "2.1 kg"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "firewire-seaside-surfboard",
+    "name": "Firewire Seaside 5'8\"",
+    "brand": "Firewire",
+    "category": "deportes-acuaticos",
+    "tagline": "Tabla de surf híbrida para todo tipo de olas",
+    "description": "Tabla quad de Rob Machado con construcción Helium ultraligera. Rápida, divertida y perdonadora en olas pequeñas y medianas.",
+    "dailyRate": 30,
+    "deposit": 250,
+    "rating": 4.8,
+    "reviewCount": 91,
+    "location": "San Diego",
+    "specs": {
+      "Medidas": "5'8\" × 21\" × 2.5\"",
+      "Volumen": "33.7 L",
+      "Quillas": "Quad FCS II",
+      "Construcción": "Helium EPS",
+      "Nivel": "Intermedio"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 1,
+        "lengthDays": 2
+      }
+    ]
+  },
+  {
+    "id": "torq-longboard-9",
+    "name": "Torq Longboard 9'0\"",
+    "brand": "Torq",
+    "category": "deportes-acuaticos",
+    "tagline": "Longboard clásico y resistente",
+    "description": "Tabla larga de epoxi TET con gran estabilidad para aprender o deslizarse con estilo en olas suaves.",
+    "dailyRate": 22,
+    "deposit": 180,
+    "rating": 4.6,
+    "reviewCount": 122,
+    "location": "Cancún",
+    "specs": {
+      "Medidas": "9'0\" × 22.75\" × 3.1\"",
+      "Volumen": "70 L",
+      "Quillas": "Single + laterales",
+      "Construcción": "Epoxi TET",
+      "Nivel": "Principiante"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1554635917-1fb8f0f63f7c?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8VG9ycSUyMExvbmdib2FyZCUyMDklMjcwJTIyfGVufDB8fHx8MTc5MzA1MzQ3MHww&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "h.ekd",
+      "profileUrl": "https://unsplash.com/@thecameron?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/brown-and-orange-skateboard-on-gray-concrete-road-7FjJLJOv4FM?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "red-paddle-ride-108",
+    "name": "Red Paddle Co Ride 10'8\"",
+    "brand": "Red Paddle Co",
+    "category": "deportes-acuaticos",
+    "tagline": "Paddle surf inflable todo terreno",
+    "description": "Tabla de SUP inflable con tecnología MSL y rocker que ofrece estabilidad excepcional. Incluye remo de carbono, bomba e inflador.",
+    "dailyRate": 35,
+    "deposit": 300,
+    "rating": 4.9,
+    "reviewCount": 148,
+    "location": "Cancún",
+    "specs": {
+      "Medidas": "10'8\" × 34\"",
+      "Carga máxima": "120 kg",
+      "Presión": "22 PSI",
+      "Incluye": "Remo, bomba, mochila",
+      "Peso": "10.7 kg"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 4,
+        "lengthDays": 2
+      },
+      {
+        "startInDays": 15,
+        "lengthDays": 3
+      }
+    ]
+  },
+  {
+    "id": "starboard-touring-126",
+    "name": "Starboard Touring 12'6\"",
+    "brand": "Starboard",
+    "category": "deportes-acuaticos",
+    "tagline": "SUP de travesía rígido",
+    "description": "Tabla rígida de touring con proa perforadora para cubrir largas distancias con eficiencia y estabilidad.",
+    "dailyRate": 45,
+    "deposit": 450,
+    "rating": 4.7,
+    "reviewCount": 46,
+    "location": "Miami",
+    "specs": {
+      "Medidas": "12'6\" × 30\"",
+      "Volumen": "295 L",
+      "Construcción": "Lite Tech",
+      "Uso": "Travesía",
+      "Peso": "12.4 kg"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1588604079477-8d41a2b025d4?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8U3RhcmJvYXJkJTIwVG91cmluZyUyMDEyJTI3NiUyMnxlbnwwfHx8fDE3OTMwNTM0NzF8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Drew Dau",
+      "profileUrl": "https://unsplash.com/@daunation?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/white-and-black-surfboard-on-body-of-water-EFb0P8NbGaU?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "hobie-mirage-outback",
+    "name": "Hobie Mirage Outback",
+    "brand": "Hobie",
+    "category": "deportes-acuaticos",
+    "tagline": "Kayak de pedales para pesca y exploración",
+    "description": "Kayak con sistema de propulsión MirageDrive 360 que deja las manos libres. Estable, cómodo y equipado para largas jornadas.",
+    "dailyRate": 85,
+    "deposit": 900,
+    "rating": 4.9,
+    "reviewCount": 67,
+    "location": "Cancún",
+    "specs": {
+      "Longitud": "3.86 m",
+      "Capacidad": "193 kg",
+      "Propulsión": "MirageDrive 360",
+      "Asiento": "Vantage CTW",
+      "Peso": "47 kg"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 6,
+        "lengthDays": 3
+      }
+    ]
+  },
+  {
+    "id": "perception-pescador-pro-10",
+    "name": "Perception Pescador Pro 10",
+    "brand": "Perception",
+    "category": "deportes-acuaticos",
+    "tagline": "Kayak sit-on-top versátil",
+    "description": "Kayak estable y fácil de manejar con asiento elevado de malla. Perfecto para recorrer manglares, lagos y costas tranquilas.",
+    "dailyRate": 40,
+    "deposit": 350,
+    "rating": 4.6,
+    "reviewCount": 84,
+    "location": "Miami",
+    "specs": {
+      "Longitud": "3.05 m",
+      "Capacidad": "147 kg",
+      "Tipo": "Sit-on-top",
+      "Asiento": "Elevado de malla",
+      "Peso": "25 kg"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "duotone-evo-kite-10",
+    "name": "Duotone Evo 10 m",
+    "brand": "Duotone",
+    "category": "deportes-acuaticos",
+    "tagline": "Cometa de kitesurf polivalente",
+    "description": "La cometa más versátil de Duotone: estable para aprender, potente para saltar y fiable en condiciones racheadas. Incluye barra.",
+    "dailyRate": 55,
+    "deposit": 600,
+    "rating": 4.8,
+    "reviewCount": 59,
+    "location": "Cancún",
+    "specs": {
+      "Tamaño": "10 m²",
+      "Viento": "12-28 nudos",
+      "Barra": "Click Bar Quad Control",
+      "Estilo": "Freeride / Wave",
+      "Nivel": "Todos"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1685988143454-0474c12e666e?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8RHVvdG9uZSUyMEV2byUyMDEwJTIwbXxlbnwwfHx8fDE3OTMwNTM0NzJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "Alejandro Macias Valverde",
+      "profileUrl": "https://unsplash.com/@alemvisuals?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-man-riding-a-surfboard-on-top-of-a-wave-N96hLHNpD0c?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "fanatic-sky-wing-foil",
+    "name": "Fanatic Sky Wing 5'4\"",
+    "brand": "Fanatic",
+    "category": "deportes-acuaticos",
+    "tagline": "Tabla compacta de wing foil",
+    "description": "Tabla de wingfoil con despegue temprano y control intuitivo. Se combina con hidrofoil para volar sobre el agua con poco viento.",
+    "dailyRate": 60,
+    "deposit": 700,
+    "rating": 4.7,
+    "reviewCount": 33,
+    "location": "San Diego",
+    "specs": {
+      "Medidas": "5'4\" × 25\"",
+      "Volumen": "95 L",
+      "Caja de foil": "Doble rail",
+      "Construcción": "Carbono / sándwich",
+      "Nivel": "Intermedio"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "lift-efoil-3",
+    "name": "Lift eFoil 3",
+    "brand": "Lift Foils",
+    "category": "deportes-acuaticos",
+    "tagline": "Tabla eléctrica que vuela sobre el agua",
+    "description": "eFoil eléctrico con control inalámbrico y hasta 2 horas de autonomía. Desliza silenciosamente sobre el agua sin olas ni viento.",
+    "dailyRate": 280,
+    "deposit": 5000,
+    "rating": 4.9,
+    "reviewCount": 24,
+    "location": "Miami",
+    "specs": {
+      "Velocidad máxima": "40 km/h",
+      "Autonomía": "Hasta 2 h",
+      "Control": "Mando Bluetooth",
+      "Batería": "Lift3 Standard",
+      "Peso": "30 kg"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 7,
+        "lengthDays": 2
+      }
+    ]
+  },
+  {
+    "id": "seabob-f5-sr",
+    "name": "Seabob F5 SR",
+    "brand": "Seabob",
+    "category": "deportes-acuaticos",
+    "tagline": "Propulsor submarino de lujo",
+    "description": "Scooter acuático eléctrico que alcanza 15 km/h y bucea hasta 40 m. Experiencia premium para yates y exploración costera.",
+    "dailyRate": 350,
+    "deposit": 6000,
+    "rating": 5,
+    "reviewCount": 18,
+    "location": "Miami",
+    "specs": {
+      "Velocidad": "15 km/h",
+      "Profundidad": "40 m",
+      "Autonomía": "60 min",
+      "Potencia": "6.5 kW",
+      "Peso": "34 kg"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 2,
+        "lengthDays": 5
+      }
+    ]
+  },
+  {
+    "id": "garmin-descent-mk3i",
+    "name": "Garmin Descent Mk3i",
+    "brand": "Garmin",
+    "category": "deportes-acuaticos",
+    "tagline": "Computadora de buceo con pantalla AMOLED",
+    "description": "Reloj de buceo con integración de aire, navegación submarina y comunicación entre buzos. Para inmersiones técnicas y recreativas.",
+    "dailyRate": 35,
+    "deposit": 800,
+    "rating": 4.8,
+    "reviewCount": 42,
+    "location": "Cancún",
+    "specs": {
+      "Pantalla": "AMOLED 1.4\"",
+      "Profundidad": "200 m",
+      "Modos": "Aire, nitrox, trimix, CCR",
+      "Comunicación": "SubWave sonar",
+      "Batería": "Hasta 32 días"
+    },
+    "imageURL": "https://images.unsplash.com/photo-1656955003707-9a86ad069bb3?ixid=M3wxMTE0NTg3fDB8MXxzZWFyY2h8MXx8R2FybWluJTIwRGVzY2VudCUyME1rM2l8ZW58MHx8fHwxNzkzMDUzNDczfDA&ixlib=rb-4.1.0&w=1600&q=80&fit=crop&auto=format",
+    "imageCredit": {
+      "name": "JJ Shev",
+      "profileUrl": "https://unsplash.com/@skjev5280?utm_source=rent_my_gear&utm_medium=referral",
+      "photoUrl": "https://unsplash.com/photos/a-watch-on-a-rock-P0nP7X_r73s?utm_source=rent_my_gear&utm_medium=referral"
+    },
+    "bookedOffsets": []
+  },
+  {
+    "id": "scubapro-hydros-pro-bcd",
+    "name": "Scubapro Hydros Pro BCD",
+    "brand": "Scubapro",
+    "category": "deportes-acuaticos",
+    "tagline": "Chaleco de buceo modular",
+    "description": "Chaleco compensador con arnés de gel monoprene moldeado, modular y cómodo dentro y fuera del agua. Ideal para viajes de buceo.",
+    "dailyRate": 25,
+    "deposit": 300,
+    "rating": 4.7,
+    "reviewCount": 56,
+    "location": "Cancún",
+    "specs": {
+      "Flotabilidad": "Hasta 17.8 kg",
+      "Arnés": "Monoprene",
+      "Lastre": "Integrado",
+      "Peso": "2.9 kg",
+      "Tallas": "S - XL"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "cressi-leonardo-dive-kit",
+    "name": "Kit de buceo Cressi Leonardo",
+    "brand": "Cressi",
+    "category": "deportes-acuaticos",
+    "tagline": "Regulador y computadora completos",
+    "description": "Set con regulador MC9, octopus, manómetro y computadora Leonardo. Todo lo necesario para bucear con confianza.",
+    "dailyRate": 30,
+    "deposit": 350,
+    "rating": 4.6,
+    "reviewCount": 73,
+    "location": "Miami",
+    "specs": {
+      "Regulador": "MC9 / Compact",
+      "Computadora": "Leonardo nitrox",
+      "Octopus": "Incluido",
+      "Manómetro": "Incluido",
+      "Nivel": "Certificado Open Water"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "oneill-hyperfreak-wetsuit",
+    "name": "Traje O'Neill Hyperfreak 4/3",
+    "brand": "O'Neill",
+    "category": "deportes-acuaticos",
+    "tagline": "Neopreno elástico para agua fría",
+    "description": "Traje de neopreno con cremallera en el pecho y TechnoButter 3X para máxima flexibilidad y calor en aguas frías.",
+    "dailyRate": 15,
+    "deposit": 120,
+    "rating": 4.7,
+    "reviewCount": 89,
+    "location": "San Diego",
+    "specs": {
+      "Grosor": "4/3 mm",
+      "Cierre": "Chest zip",
+      "Neopreno": "TechnoButter 3X",
+      "Temperatura": "12-16 °C",
+      "Tallas": "S - XL"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  },
+  {
+    "id": "gopro-hero-13-dive",
+    "name": "GoPro HERO13 Black + carcasa de buceo",
+    "brand": "GoPro",
+    "category": "deportes-acuaticos",
+    "tagline": "Captura cada ola y cada inmersión",
+    "description": "Cámara de acción 5.3K con carcasa protectora para 60 m, luz de video y empuñadura flotante. Recuerdos épicos bajo el agua.",
+    "dailyRate": 28,
+    "deposit": 300,
+    "rating": 4.8,
+    "reviewCount": 161,
+    "location": "Cancún",
+    "specs": {
+      "Video": "5.3K 60p",
+      "Carcasa": "Sumergible 60 m",
+      "Estabilización": "HyperSmooth 6.0",
+      "Incluye": "Luz, empuñadura flotante",
+      "Peso": "159 g"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": [
+      {
+        "startInDays": 0,
+        "lengthDays": 3
+      }
+    ]
+  },
+  {
+    "id": "jobe-sports-wakeboard",
+    "name": "Jobe Vanity Wakeboard + fijaciones",
+    "brand": "Jobe",
+    "category": "deportes-acuaticos",
+    "tagline": "Wakeboard para progresar rápido",
+    "description": "Tabla de wakeboard con rocker continuo y fijaciones ajustables. Aterrizajes suaves y gran control para todos los niveles.",
+    "dailyRate": 26,
+    "deposit": 200,
+    "rating": 4.5,
+    "reviewCount": 38,
+    "location": "Monterrey",
+    "specs": {
+      "Longitud": "138 cm",
+      "Rocker": "Continuo",
+      "Fijaciones": "Unit, ajustables",
+      "Quillas": "Moldeadas",
+      "Nivel": "Principiante - Intermedio"
+    },
+    "imageURL": null,
+    "imageCredit": null,
+    "bookedOffsets": []
+  }
+]
