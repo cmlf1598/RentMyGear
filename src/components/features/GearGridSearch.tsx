@@ -4,7 +4,7 @@ import { Search, X } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
 
-import { Input } from "@/components/ui/input";
+import { Input } from "../ui/input";
 
 export interface GearGridEntry {
   id: string;

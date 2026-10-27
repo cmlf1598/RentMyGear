@@ -1,10 +1,10 @@
 import { connection } from "next/server";
 
-import { GearImage } from "@/components/features/GearImage/GearImage";
-import { HeroCarouselClient, type HeroSlide } from "@/components/features/HeroCarouselClient";
-import { CATEGORIES } from "@/config/categories";
-import { formatCurrency } from "@/lib/date-utils";
-import { inventoryService } from "@/services/inventoryService";
+import { GearImage } from "./GearImage/GearImage";
+import { HeroCarouselClient, type HeroSlide } from "./HeroCarouselClient";
+import { CATEGORIES } from "../../config/categories";
+import { formatCurrency } from "../../lib/date-utils";
+import { inventoryService } from "../../services/inventoryService";
 
 export const HERO_ITEM_COUNT = 5;
 

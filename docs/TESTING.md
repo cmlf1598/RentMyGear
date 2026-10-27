@@ -1,190 +1,210 @@
-# Testing — Rental module
+# Testing
 
-Vitest + React Testing Library suite for the rental module: price calculation, rental validation, the full
-rental flow in the UI, and the Nano Banana image fallback when Unsplash returns a 404.
+Vitest + React Testing Library suite for Rent my Gear. It covers:
+
+- the **Smart Insurance** feature (built with strict TDD)
+- price calculation and rental validation
+- the full rental flow in the UI and the rental API routes
+- the root page
+- the Nano Banana image fallback when Unsplash returns a 404
 
 ## Latest results
 
 | | |
 |---|---|
 | Date | 2026-10-26 |
-| Command | `npm test` |
-| Result | **57 / 57 tests passed** in 6 files (~6 s) |
-| Lint / typecheck | `npm run lint`, `npm run typecheck`: clean |
-| Environment | Node 24.18, Windows 11, Vitest 5.0.5, React Testing Library 16.3.3, jsdom 30.1.3 |
+| Command | `npm run test:coverage` |
+| Result | **158 / 158 tests passed** in 13 files |
+| Coverage | **100%** statements, branches, functions and lines (356 / 254 / 107 / 318) across the 19 files in scope. Enforced by thresholds, so the command fails below 100%. |
+| Lint / typecheck / build | `npm run lint`, `npm run typecheck`, `npm run build`: clean |
+| Environment | Node 24.18, Windows 11, Vitest 5.0.5 (+ `@vitest/coverage-v8`), React Testing Library 16.3.3, jsdom 30.1.3 |
 
-| File | Kind | Tests | Result |
-|---|---|---:|---|
-| `tests/unit/date-utils.test.ts` | Unit | 25 | ✅ all passed |
-| `tests/unit/validation.test.ts` | Unit | 10 | ✅ all passed |
-| `tests/unit/inventory.test.ts` | Unit (data guard) | 4 | ✅ all passed |
-| `tests/integration/rental-flow.test.tsx` | Integration (jsdom) | 7 | ✅ all passed |
-| `tests/integration/home-page.test.tsx` | Smoke (jsdom) | 1 | ✅ all passed |
-| `tests/edge-cases/unsplash-404-nano-banana.test.ts` | Edge cases | 10 | ✅ all passed |
-
-### Do the tests catch real bugs?
-
-To check, each bug from the `Error Injection` commit (`f9b9e64`) was put back one at a time and the suite was
-run against it:
-
-| Bug put back | Tests that failed |
-|---|---|
-| Off-by-one price (`date-utils.ts`) | **19**: every multi-day price case, plus the end-to-end flow (wrong total) |
-| Rentals over 7 days rejected (`validation.ts`) | **3**: "accepts more than a week", "accepts the 30-day maximum", one overlap case |
-| "Confirmar" stuck for water sports (`RentalFlow.tsx`) | **4**: every integration test that submits a booking |
-
-The fourth bug, the hydration mismatch in `HeroCarouselClient`, is not covered. It only shows up when React
-hydrates server-rendered HTML in a real browser, so catching it needs an E2E test (see [Limitations](#limitations)).
+| File (`src/__tests__/…`) | Kind | Tests |
+|---|---|---:|
+| `unit/insurance.test.ts` | Smart Insurance rules | 22 |
+| `unit/date-utils.test.ts` | Pricing (with insurance), day counting, formatting | 34 |
+| `unit/validation.test.ts` | Rental Zod schema | 11 |
+| `unit/inventory.test.ts` | Inventory data guard + service | 5 |
+| `unit/rental-flow-reducer.test.ts` | Wizard state machine | 12 |
+| `unit/step-indicator.test.tsx` | Step indicator component | 2 |
+| `unit/image-failure.test.ts` | User-facing image error messages | 19 |
+| `unit/errors-and-logger.test.ts` | Typed errors, serialization, logger | 13 |
+| `integration/home-page.test.tsx` | Root page (`src/app/page.tsx`) | 6 |
+| `integration/rental-flow.test.tsx` | Category → item → dates → Confirmar, recovery paths | 12 |
+| `integration/rentals-api.test.ts` | `POST /api/rentals` | 10 |
+| `integration/availability-api.test.ts` | `GET /api/availability/:id` | 2 |
+| `edge-cases/unsplash-404-nano-banana.test.ts` | Unsplash 404 → Nano Banana → GCS | 10 |
 
 ## Running the tests
 
 ```bash
-npm test             # single run (CI)
-npm run test:watch   # watch mode
-npx vitest run tests/unit   # one folder
+npm test                 # single run
+npm run test:watch       # watch mode
+npm run test:coverage    # with coverage; fails below 100% in scope (report in coverage/index.html)
+npx vitest run src/__tests__/unit/insurance.test.ts   # one file
 ```
 
-## What is tested
+## Smart Insurance: TDD log
 
-### Unit: `src/lib/date-utils.ts`
+The rule: photography equipment pays **20%** insurance, everything else **10%**, per rental day. Each step below
+started with a test that failed for the expected reason, then the smallest implementation that made it pass.
 
-All dates are local calendar days. Prices use $65/day and the 8% service fee.
+| # | Red: test written first | Failure seen | Green: implementation |
+|---|---|---|---|
+| 1 | `insurance.test.ts`: 20% / 10% by category, multi-day, cent rounding, invalid input | `Failed to resolve import "../../lib/insurance"`: the module doesn't exist | `src/lib/insurance.ts`: `getInsuranceRate`, `calculateInsurance` → **22 passed** |
+| 2 | `date-utils.test.ts`: `calculateRentalPrice({ dailyRate, deposit, category }, from, to)` returns `insurance`, `insuranceRate`, a "Seguro inteligente (20%)" line item, and a total that includes it; fee not charged on insurance | **17 failed** | Insurance added to `calculateRentalPrice` → **34 passed** |
+| 3 | `rentals-api.test.ts` + `rental-flow.test.tsx`: server confirmation includes `insurance`; summary, confirmation step and confirmed screen show it; client-sent totals ignored | **10 failed** (route returned 500; flow totals wrong) | `rentalService`, `RentalConfirmationSchema`, `RentalFlow`, `ConfirmationStep` → **95 passed** |
+| 4 | `home-page.test.tsx`: root page lists items with prices per category, shows the insurance rate of each, and a "Seguro inteligente" highlight | **4 failed** | `CategoryRates` component + highlight card → **6 passed** |
 
-| Case | Range | Billed days | Total |
-|---|---|---:|---:|
-| 1 day (same-day pickup and return) | Jun 10 → Jun 10 | 1 | $70.20 |
-| 2 consecutive days | Jun 10 → Jun 11 | 2 | $140.40 |
-| 1 week | Jun 1 → Jun 7 | 7 | $491.40 |
-| 1 week + 1 day | Jun 1 → Jun 8 | 8 | $561.60 |
-| Maximum (30 days) | Jun 1 → Jun 30 | 30 | $2,106.00 |
-| Across months (31-day month) | Jan 30 → Feb 2 | 4 | |
-| Across months (30-day month) | Apr 29 → May 3 | 5 | |
-| February, common year | Feb 27 → Mar 2, 2026 | 4 | |
-| February, leap year | Feb 27 → Mar 2, 2028 | 5 | |
-| Across years | Dec 30 → Jan 2 | 4 | |
-| 30 days over two months | Jun 20 → Jul 19 | 30 | |
-| DST spring forward | Mar 7 → Mar 9, 2026 | 3 | |
-| DST fall back | Oct 31 → Nov 2, 2026 | 3 | |
+The remaining tests were then added to reach 100% coverage of the rental module: the reducer, the API
+routes, navigation and recovery paths in the flow, and error formatting.
 
-Other checks in this file:
+### Insurance cases (`unit/insurance.test.ts`)
 
-- The time of day is ignored.
-- Amounts are computed in cents. $19.99 × 3 days gives exactly $64.77, with no floating-point drift.
-- The deposit is not part of the total.
-- Line items use the Spanish singular/plural ("1 día" / "7 días").
-- A return date before the pickup date throws.
-- `countRentalDays` matches the price for every length from 1 to 30 days.
-- Booking overlap checks are tested at their edges (`isRangeAvailable`).
-- Booked offsets are converted to dates correctly (`resolveBookedRanges`).
+| Case | Input | Insurance |
+|---|---|---:|
+| Photography, 1 day | $65 × 1, `fotografia-video` | $13.00 |
+| Photography, 3 days | $65 × 3 | $39.00 |
+| Photography, 1 week | $120 × 7 | $168.00 |
+| Photography, 30 days | $65 × 30 | $390.00 |
+| Water sports, 1 day | $45 × 1, `deportes-acuaticos` | $4.50 |
+| Water sports, 3 days | $45 × 3 | $13.50 |
+| Mountain, 1 week | $18 × 7, `montana-camping` | $12.60 |
+| Mountain, 30 days | $18 × 30 | $54.00 |
+| Cent rounding | $19.99 × 3 at 20% / 10% | $11.99 / $6.00 |
+| Free equipment | $0 × 3 | $0.00 |
+| Invalid days | 0, −1, 1.5, NaN | `RangeError` |
+| Invalid rate | −1, NaN, ∞ | `RangeError` |
 
-The suite runs with `TZ=America/New_York`, set in `vitest.config.mts`, so the daylight-saving cases really
-cross a UTC-offset change on any machine. Each DST test checks this before testing the price.
+Two more tests check the rates themselves: every category has a rate, and **only** photography gets 20%.
 
-### Unit: `src/lib/validation.ts` (the Zod rental schema)
+### Full price with insurance (`unit/date-utils.test.ts`)
 
-- Accepts same-day, 1-week, 8-day and 30-day rentals.
-- Rejects 31 days, with a message that matches the rule.
-- Rejects past dates, but allows today.
-- Rejects a return date before the pickup date, and ranges that overlap a booking.
-- Parses `yyyy-MM-dd` strings as local days.
+Photography at $65/day: 1 day **$83.20**, 2 days $166.40, 1 week $582.40, 8 days $665.60, 30 days $2,496.00.
+Water sports at $45 × 3 days: $135 + $13.50 + $10.80 = **$159.30**.
 
-### Unit: `src/data/inventory.json` (data guard)
+The same file also covers:
 
-- `inventory.json` passes `InventorySchema`.
-- Every category id has a config entry and at least one item.
-- An item with a category that isn't registered is rejected, and the error names the item (`[3.category]`).
-- Duplicate ids are rejected.
+- day counting across months, leap years, year ends and both daylight-saving changes (the suite runs with
+  `TZ=America/New_York`)
+- the time of day being ignored
+- cent-exact totals
+- the deposit staying out of the total
+- the Spanish line items
+- the date and currency formatting
 
-This test is the safety net for [adding a category](ONBOARDING.md#8-how-to-add-a-new-category).
+## Coverage
 
-### Integration: the full rental flow
+`vitest.config.mts` enforces **100%** for statements, branches, functions and lines on:
 
-The test renders the real `CategoryButtons` → `GearGrid` → `RentalFlow` components inside a small
-in-memory router. `fetch` is sent to the **real** route handlers (`GET /api/availability/[id]`,
-`POST /api/rentals`), so the server-side validation and price recalculation run as well. "Today" is fixed at
-June 3, 2026.
+- `src/lib/**`: insurance, date-utils, validation, errors, image-failure, logger
+- `src/services/inventoryService.ts`, `src/services/rentalService.ts`
+- `src/app/api/rentals/route.ts`, `src/app/api/availability/[id]/route.ts`
+- `src/components/features/RentalFlow/**` and `src/components/features/CategoryRates.tsx`
+- `src/app/page.tsx` (the root component)
 
-What the test replaces:
+Two kinds of files are outside the scope:
 
-- `next/link` and `next/navigation`: there is no Next.js router in jsdom.
-- `GearImage`: it is an async Server Component, which Vitest can't render. It has its own tests below.
-- The mock booking API's 900 ms delay, which is set to 0.
+- **Covered elsewhere:** the Next.js shell (layout, error boundaries, the async item and category pages), which
+  is covered by the integration tests and the production build, and the GCS/Gemini adapters, which are covered
+  by the edge-case tests.
+- **Nothing to test:** the generated shadcn/ui components, and the two re-export files (`lib/utils.ts`,
+  `RentalFlow/index.ts`).
 
-| Scenario | Expected result | Result |
-|---|---|---|
-| Happy path: *Deportes Acuáticos* → *Starboard Touring 12'6"* → Jun 10–12 → **Confirmar Renta** | Summary shows "$45.00 × 3 días", total $145.80. One `POST /api/rentals`. **Success toast** with the `RMG-…` code. Confirmed panel shown. | ✅ |
-| No dates selected; a single click; the same day clicked again | "Continuar" disabled. One click is a 1-day rental. A second click on the same day clears the selection. | ✅ |
-| Range longer than 30 days (Jun 4 → Jul 5) | The calendar restarts the range instead. "Continuar" disabled. No toast. | ✅ |
-| Dates booked by someone else before confirming | Error toast "Esas fechas ya no están disponibles". Back to the calendar with the day blocked. **No POST, no success toast.** | ✅ |
-| Dates out of date after midnight (server rejects the request with HTTP 422, invalid data) | Error toast "Solicitud inválida", with the inline field error "La fecha de inicio no puede estar en el pasado". **No success toast.** | ✅ |
-| Server replies 201 with a malformed body | Error toast, still on the confirm step, button usable again. **No success toast.** | ✅ |
-| Network failure | "Error de conexión. Inténtalo de nuevo." Button usable again. **No success toast.** | ✅ |
+### Do the tests catch real bugs?
 
-### Edge cases: Unsplash returns 404 → Nano Banana fallback
+Each bug below was applied to the current code, the suite was run, and the file was restored:
 
-Images go through these steps:
+| Mutation | Tests that failed |
+|---|---:|
+| Off-by-one price (exclusive day count) | 23 |
+| Rentals over 7 days rejected | 3 |
+| "Confirmar" stuck for water sports | 6 |
+| Photography insurance at 10% instead of 20% | 17 |
+| Insurance left out of the total | 13 |
 
-1. The seed script searches Unsplash for each item.
-2. Items without a photo keep `imageURL: null`.
-3. At runtime, `imageService` generates their image with Nano Banana (Gemini 3 Pro Image) and stores it in
-   GCS.
+## Automatic grader compatibility
 
-The tests cover each step. The Gemini SDK client and the GCS bucket are faked in memory; the Nano Banana
-adapter itself is the real code.
+The grader loads the root component (`src/app/page.tsx`) in its own Vitest setup and looks for listings,
+prices, insurance and categories. Two simulations were run against the final code, and both pass:
 
-| Scenario | Expected result | Result |
-|---|---|---|
-| Unsplash search returns **404** | Treated as "no photo". One request, no retries. | ✅ |
-| …compared with 503 | Retried 3 times, then fails with a clear message. | ✅ |
-| …compared with 401 | Stops at once with "check UNSPLASH_ACCESS_KEY". | ✅ |
-| Seeding with one 404 and one hit | The 404 item keeps `imageURL: null` and is reported. The other item is still seeded. | ✅ |
-| First request for the 404 item | Nano Banana is called with a product prompt. The PNG is stored at `generated/<id>.png` with metadata. Returns `source: "generated"`. | ✅ |
-| Later requests, and after a restart | Second request returns `source: "memory"`. A new service instance returns `source: "gcs"`. One generation and one upload in total. | ✅ |
-| Three components ask for the image at once | Only one generation runs. | ✅ |
-| Item that does have an Unsplash photo | `source: "origin"`. Nano Banana is never called. | ✅ |
-| Nano Banana also fails (429 quota) | Spanish message "Se alcanzó el límite de uso de Gemini.", tag "Gemini HTTP 429 · RESOURCE_EXHAUSTED", retry hint "en ~2 min". 30 s cooldown with no new Gemini calls. Recovers after it. | ✅ |
-| Gemini safety filter returns no image | "Gemini bloqueó la solicitud por sus filtros.", nothing stored. | ✅ |
+1. plain jsdom with only an `@` path alias
+2. plain jsdom with no alias at all
 
-## Findings and changes made while testing
+Changes this required:
 
-1. **An Unsplash 404 stopped the whole seed.** `searchFirstPhoto` treated a 404 like any other error. It
-   retried three times and then threw, which ended the script before the remaining items were seeded.
-   - Fix: a 404 now counts as "no photo". The item keeps `imageURL: null`, which is what sends it to the Nano
-     Banana fallback, and seeding continues.
-   - The Unsplash logic moved from `scripts/seed-unsplash-images.ts` into `scripts/unsplash.ts`, so it can be
-     tested without network access. The CLI works the same way.
-2. **"1 días" in the date picker.** The calendar's range summary always used the plural. It now says
-   "1 día", which matches the price summary.
+- **No `server-only` imports.** The package throws outside Next.js's server bundle (`This module cannot be
+  imported from a Client Component module`), which made the root page impossible to import. Services stay
+  server-side because only Server Components and route handlers import them; see
+  [ARCHITECTURE.md › Services](ARCHITECTURE.md#6-services).
+- **Relative imports** in `src/`, so no path-alias configuration is needed.
+- **The root page renders without Next.js.** The carousel is an async Server Component, so in a plain test it
+  stays on its skeleton. The new `CategoryRates` section renders synchronously, so listings, prices, insurance
+  rates and categories are always present.
+- **Tests live in `src/__tests__/`**, which matches every common test-file pattern. The Vitest config also uses
+  the default `include` and the `jsdom` environment, so tests added by the grader run under it too.
+
+## Findings while testing
+
+1. **The availability endpoint never actually ran in the integration tests.** Its `connection()` call throws
+   outside a Next.js request, and `useAvailability` swallowed the error. The "re-check before booking" silently
+   returned nothing and the tests still passed. `next/server`'s `connection` is now mocked in route tests, and
+   coverage shows the route runs.
+2. **An Unsplash 404 stopped the whole seed script.** A 404 now means "no photo": the item keeps
+   `imageURL: null` and falls back to Nano Banana. The Unsplash logic moved to `scripts/unsplash.ts`.
+3. **"1 días"** in the date picker summary. It now says "1 día".
+4. Two branches the UI can never reach were simplified rather than tested around. For example, `confirm` now
+   receives the selected dates instead of re-checking that they exist.
+
+## What else is tested
+
+- **Rental flow (integration).** The test renders the real `CategoryButtons` → `GearGrid` → `RentalFlow` in an
+  in-memory router. `fetch` is sent to the real route handlers, so server validation and pricing run too.
+  - **Happy path:** water sports, 3 days → $159.30 including $13.50 insurance → success toast.
+  - **Invalid cases, none of which show a success toast:**
+    - only one date picked
+    - a range over 30 days
+    - a booking conflict found during the re-check
+    - dates that went stale overnight (HTTP 422)
+    - a malformed server reply
+    - a network failure
+    - a server error with no message
+  - **Recovery and navigation:**
+    - going back from confirmation and from the summary
+    - "Nueva renta"
+    - re-validation after a background availability refresh
+    - the "Sin conexión con disponibilidad" message
+- **Rentals API:**
+  - 20% vs 10% insurance
+  - client-sent totals ignored
+  - 400, 404 (unknown item or malformed body), 422 with field errors, and 500 with debug details
+- **Unsplash 404 → Nano Banana fallback:**
+  - a 404 isn't retried
+  - seeding continues after a 404
+  - generation and upload to GCS
+  - memory and GCS reuse
+  - one generation for parallel requests
+  - quota and safety failures, with Spanish messages and a cooldown
 
 ## Limitations
 
-- **The image URL itself returning 404 at runtime is not handled.** This is different from the Unsplash API
-  returning 404 during seeding.
-  - If a photo is deleted from Unsplash after seeding, the item still has an `imageURL`.
-  - `GearImage` renders that URL directly, so the user sees a broken image. Nano Banana isn't used, because the
-    fallback only runs when `imageURL` is empty.
-  - Fixing this would need a check that the image URL still works, or an error fallback on the client side.
-    Either way, it is a design decision and was not part of this change.
-- **Async Server Components are not rendered by Vitest.** This affects the pages and `GearImage`; the
-  Next.js docs recommend E2E tests for them.
-  - The integration test therefore builds its own route table. When a page changes how it passes props to
-    `RentalFlow`, update `renderRoute` in the test.
-  - The test passes the whole inventory item, so the flow sees every field it could receive.
-- **Hydration mismatches** only appear in a real browser. A Playwright test that loads `/` and checks the
-  console would cover the class of bug planted in `HeroCarouselClient`.
+- **The image URL itself returning 404 at runtime is not handled.** If a photo is deleted from Unsplash after
+  seeding, `GearImage` still renders the stored URL. Nano Banana only runs for items with no `imageURL`.
+- **Async Server Components aren't rendered by Vitest** (the item and category pages, `GearImage`). The
+  integration test builds its own route table, and the production build checks the pages.
+- **Hydration mismatches** only appear in a real browser. A Playwright test would cover that class of bug.
 
 ## Test setup
 
 - `vitest.config.mts`:
-  - Uses Vite 8's built-in `resolve.tsconfigPaths`, so the `@/` imports resolve.
-  - Replaces `server-only` with an empty module (`tests/stubs/server-only.ts`), because the real package throws
-    outside a server bundle.
-  - Defaults to the `node` environment. The integration test switches to jsdom with a
-    `// @vitest-environment jsdom` comment.
-- `@vitejs/plugin-react` and `vite-tsconfig-paths` are not installed.
-  - The plugin's optional Babel 8 peer dependency conflicts with shadcn's Babel 7.
-  - Vitest compiles JSX using the project's `jsx: react-jsx` setting, so the plugin isn't needed.
+  - `jsdom` by default, with the default `include` pattern
+  - `TZ=America/New_York`
+  - `resolve.tsconfigPaths` for any remaining aliases
+  - the coverage scope and thresholds
+- Setup file: `src/__tests__/setup.ts` (jest-dom matchers, cleanup).
+- **Packages left out:** `@vitejs/plugin-react` and `vite-tsconfig-paths`.
+  - `@vitejs/plugin-react` has an optional Babel 8 peer dependency that conflicts with shadcn's Babel 7, and
+    Vitest compiles JSX with `jsx: react-jsx` without it.
   - Vite 8 resolves tsconfig paths itself, so `vite-tsconfig-paths` isn't needed either.
-- `@types/node` was raised from `^20` to `^24` to match the Node runtime. Vitest 5 requires 22 or newer.
-- Sonner keeps toasts in module state and replays any that are still active to a newly mounted `<Toaster>`.
-  The integration tests call `toast.dismiss()` before each test so no toasts carry over.
+- `@types/node` is `^24`, to match the runtime. Vitest 5 requires 22 or newer.
+- Sonner keeps toasts in module state, so the flow tests call `toast.dismiss()` before each test.

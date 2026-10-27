@@ -3,6 +3,9 @@
 A marketplace for renting premium equipment: cinema cameras, mountaineering gear and water-sports equipment.
 You browse by category, pick dates on a calendar, see the full price, and confirm a booking.
 
+**Smart Insurance** is included in every rental: **20%** of the rental for photography and video equipment, **10%**
+for everything else. It appears as its own line in the price and is recalculated on the server.
+
 When an item has no product photo, the server generates one with **Nano Banana Pro** (Gemini 3 Pro Image) and
 stores it in **Google Cloud Storage**. Every later visit uses the stored image.
 
@@ -16,7 +19,7 @@ and Zod.
 | [Onboarding Guide](docs/ONBOARDING.md) | Set up your machine, tour the code, learn the conventions, **debug the GCS connection** and **add a new category**. Start here if you're new. |
 | [Architecture](docs/ARCHITECTURE.md) | Understand the rendering model, services, domain model, validation and error handling. Includes the **image resolution sequence diagram** and the **inventoryService / imageService class diagram**. |
 | [API reference](docs/API.md) | Call the HTTP endpoints, including `/api/health` and `/api/images/:id` for debugging. |
-| [Testing](docs/TESTING.md) | See what the Vitest suite covers, the latest results and the known gaps. |
+| [Testing](docs/TESTING.md) | See what the Vitest suite covers, the TDD log for Smart Insurance, coverage (100% on the rental module) and the known gaps. |
 
 ## Quick start
 
@@ -43,6 +46,7 @@ GCS.
 | `npm run build` / `npm start` | Production build and server |
 | `npm run lint` / `npm run typecheck` | ESLint / TypeScript (strict) |
 | `npm test` / `npm run test:watch` | Vitest: unit, integration and edge-case tests |
+| `npm run test:coverage` | Tests plus coverage; fails below 100% for the rental module and Smart Insurance |
 | `npm run setup:gcs` | Create or check the GCS bucket (`uv run setup_gcs.py`; `-- --smoke-only` only checks permissions) |
 | `npm run seed:images` | Fill missing `imageURL`s from Unsplash (`-- --dry-run`, `-- --force`) |
 
@@ -60,7 +64,8 @@ inventory.json ──► inventoryService ──► pages / carousel / grid ─�
 - **Pages render in parts (Partial Prerendering).** The static parts are prerendered. Anything that depends on
   the request streams in through `<Suspense>`: random picks, availability, and images being generated.
 - **The rental wizard** goes dates → summary → confirm, and uses the same Zod schema in the browser and on the
-  server. The server recalculates the price. The booking API is a mock.
+  server. The price is rental + Smart Insurance + an 8% service fee, and the server recalculates it. The booking
+  API is a mock.
 - **Expected failures show a message.** If the Gemini quota or credits run out, or GCS is unreachable, that
   image's placeholder shows "Imagen no disponible" with the reason and when to retry. The rest of the page keeps
   working.
@@ -73,9 +78,9 @@ The details, with diagrams, are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 src/app          routes, layouts, error boundaries, API route handlers
 src/components   features/ (domain UI), layout/, shared/, ui/ (shadcn)
 src/services     inventory, image (Nano Banana), storage (GCS), rental (mock booking)
-src/lib          pure helpers: dates and pricing, validation, errors, logger
+src/lib          pure helpers: Smart Insurance, dates and pricing, validation, errors, logger
 src/config       environment schema, category definitions
 src/data         inventory.json (50 items)
-tests/           unit, integration and edge-case tests (Vitest + React Testing Library)
+src/__tests__    unit, integration and edge-case tests (Vitest + React Testing Library)
 docs/            the documentation listed above
 ```

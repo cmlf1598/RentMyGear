@@ -1,13 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { describeImageFailure } from "@/lib/image-failure";
-import type { Logger } from "@/lib/logger";
-import { ImageGenerationError } from "@/lib/errors";
-import { createImageService, createNanoBananaGenerator, type ImageServiceDeps } from "@/services/imageService";
-import { inventoryService } from "@/services/inventoryService";
-import type { GearItem } from "@/types/gear";
+import { describeImageFailure } from "../../lib/image-failure";
+import type { Logger } from "../../lib/logger";
+import { ImageGenerationError } from "../../lib/errors";
+import { createImageService, createNanoBananaGenerator, type ImageServiceDeps } from "../../services/imageService";
+import { inventoryService } from "../../services/inventoryService";
+import type { GearItem } from "../../types/gear";
 
-import { type InventoryItem, searchFirstPhoto, seedInventoryImages, type UnsplashPhoto } from "../../scripts/unsplash";
+import { type InventoryItem, searchFirstPhoto, seedInventoryImages, type UnsplashPhoto } from "../../../scripts/unsplash";
 
 // Only the Gemini SDK client is faked; the Nano Banana adapter around it is the real one.
 const generateContent = vi.hoisted(() => vi.fn());

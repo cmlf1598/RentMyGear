@@ -1,8 +1,8 @@
 import { format, parseISO, startOfDay } from "date-fns";
 import { z } from "zod";
 
-import { countRentalDays, isRangeAvailable, MAX_RENTAL_DAYS } from "@/lib/date-utils";
-import type { BookedRange } from "@/types/gear";
+import { countRentalDays, isRangeAvailable, MAX_RENTAL_DAYS } from "./date-utils";
+import type { BookedRange } from "../types/gear";
 
 export interface RentalSchemaOptions {
   /** Injectable clock so validation is deterministic in tests. */
@@ -78,6 +78,7 @@ export const RentalConfirmationSchema = z.object({
   from: z.string(),
   to: z.string(),
   days: z.int().positive(),
+  insurance: z.number().nonnegative(),
   total: z.number().nonnegative(),
   deposit: z.number().nonnegative(),
   createdAt: z.string(),

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { Toaster } from "@/components/ui/sonner";
+import { SiteFooter } from "../components/layout/SiteFooter";
+import { SiteHeader } from "../components/layout/SiteHeader";
+import { Toaster } from "../components/ui/sonner";
 
 import "./globals.css";
 

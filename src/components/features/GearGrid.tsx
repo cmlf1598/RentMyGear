@@ -1,11 +1,11 @@
 import { Star } from "lucide-react";
 import Link from "next/link";
 
-import { GearCardSkeleton } from "@/components/features/GearCardSkeleton";
-import { GearImage } from "@/components/features/GearImage/GearImage";
-import { GearGridSearch, type GearGridEntry } from "@/components/features/GearGridSearch";
-import { formatCurrency } from "@/lib/date-utils";
-import type { GearItem } from "@/types/gear";
+import { GearCardSkeleton } from "./GearCardSkeleton";
+import { GearImage } from "./GearImage/GearImage";
+import { GearGridSearch, type GearGridEntry } from "./GearGridSearch";
+import { formatCurrency } from "../../lib/date-utils";
+import type { GearItem } from "../../types/gear";
 
 /** Images above the fold are preloaded; the rest lazy-load as the user scrolls. */
 const PRELOAD_COUNT = 3;

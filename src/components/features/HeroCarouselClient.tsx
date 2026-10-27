@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -13,8 +13,8 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
+} from "../ui/carousel";
+import { cn } from "../../lib/utils";
 
 export interface HeroSlide {
   id: string;

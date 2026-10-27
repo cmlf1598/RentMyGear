@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { MAX_RENTAL_DAYS } from "@/lib/date-utils";
-import { createRentalRequestSchema, toFieldErrors } from "@/lib/validation";
+import { MAX_RENTAL_DAYS } from "../../lib/date-utils";
+import { createRentalRequestSchema, toFieldErrors } from "../../lib/validation";
 
 const TODAY = new Date(2026, 5, 1, 9, 30);
 const now = () => TODAY;
@@ -57,6 +57,13 @@ describe("createRentalRequestSchema", () => {
       errors: { from: "Las fechas seleccionadas incluyen días no disponibles" },
     });
     expect(validate("2026-06-13", "2026-06-20", booked).ok).toBe(true);
+  });
+
+  it("files issues that have no field under 'form'", () => {
+    const result = createRentalRequestSchema({ now }).safeParse(null);
+
+    expect(result.success).toBe(false);
+    expect(result.success ? null : toFieldErrors(result.error)).toEqual({ form: expect.any(String) });
   });
 
   it("requires both dates", () => {

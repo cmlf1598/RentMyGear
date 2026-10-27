@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
-import { NotFoundError, RentalValidationError, serializeError } from "@/lib/errors";
-import { logger } from "@/lib/logger";
-import { rentalService } from "@/services/rentalService";
+import { NotFoundError, RentalValidationError, serializeError } from "../../../lib/errors";
+import { logger } from "../../../lib/logger";
+import { rentalService } from "../../../services/rentalService";
 
 /** Mock booking endpoint used by the RentalFlow confirmation step. */
 export async function POST(request: Request) {

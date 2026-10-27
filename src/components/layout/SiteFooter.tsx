@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { CATEGORY_LIST } from "@/config/categories";
+import { CATEGORY_LIST } from "../../config/categories";
 
 export function SiteFooter() {
   return (

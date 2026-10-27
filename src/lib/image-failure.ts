@@ -1,4 +1,4 @@
-import { AppError, StorageError } from "@/lib/errors";
+import { AppError, StorageError } from "./errors";
 
 /** User-facing (Spanish) summary of why an AI image could not be produced. */
 export interface ImageFailureInfo {

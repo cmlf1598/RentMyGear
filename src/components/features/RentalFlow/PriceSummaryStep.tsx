@@ -1,8 +1,8 @@
 import { ShieldCheck } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { formatCurrency, formatDateRange, type PriceBreakdown } from "@/lib/date-utils";
+import { Button } from "../../ui/button";
+import { Separator } from "../../ui/separator";
+import { formatCurrency, formatDateRange, type PriceBreakdown } from "../../../lib/date-utils";
 
 interface PriceSummaryStepProps {
   from: Date;

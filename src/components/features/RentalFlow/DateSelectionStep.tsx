@@ -6,10 +6,10 @@ import { useState } from "react";
 import type { DateRange } from "react-day-picker";
 import { es } from "react-day-picker/locale";
 
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { countRentalDays, formatDateRange, MAX_RENTAL_DAYS } from "@/lib/date-utils";
-import type { BookedRange } from "@/types/gear";
+import { Button } from "../../ui/button";
+import { Calendar } from "../../ui/calendar";
+import { countRentalDays, formatDateRange, MAX_RENTAL_DAYS } from "../../../lib/date-utils";
+import type { BookedRange } from "../../../types/gear";
 
 interface DateSelectionStepProps {
   range: DateRange | undefined;

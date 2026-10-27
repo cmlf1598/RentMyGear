@@ -1,6 +1,6 @@
 import type { DateRange } from "react-day-picker";
 
-import type { RentalConfirmation } from "@/lib/validation";
+import type { RentalConfirmation } from "../../../lib/validation";
 
 export type RentalStep = "dates" | "summary" | "confirm" | "confirmed";
 

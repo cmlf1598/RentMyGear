@@ -1,9 +1,9 @@
 import { connection, NextResponse } from "next/server";
 
-import { AppError, serializeError } from "@/lib/errors";
-import { describeImageFailure } from "@/lib/image-failure";
-import { getImageService } from "@/services/imageService";
-import { inventoryService } from "@/services/inventoryService";
+import { AppError, serializeError } from "../../../../lib/errors";
+import { describeImageFailure } from "../../../../lib/image-failure";
+import { getImageService } from "../../../../services/imageService";
+import { inventoryService } from "../../../../services/inventoryService";
 
 /**
  * Debug endpoint: resolves (and if needed generates) an item's image and

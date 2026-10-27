@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { MainNav } from "@/components/layout/MainNav";
-import { CATEGORY_LIST } from "@/config/categories";
+import { MainNav } from "./MainNav";
+import { CATEGORY_LIST } from "../../config/categories";
 
 export function SiteHeader() {
   return (

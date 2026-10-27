@@ -1,6 +1,6 @@
 "use client";
 
-import { ErrorState } from "@/components/shared/ErrorState";
+import { ErrorState } from "../../../components/shared/ErrorState";
 
 export default function CategoryError({ error, retry }: { error: unknown; retry: () => void }) {
   return (

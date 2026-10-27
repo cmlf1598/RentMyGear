@@ -7,7 +7,8 @@ import {
 } from "date-fns";
 import { es } from "date-fns/locale";
 
-import type { BookedRange, BookedRangeISO } from "@/types/gear";
+import { calculateInsurance, getInsuranceRate } from "./insurance";
+import type { BookedRange, BookedRangeISO, CategoryId } from "../types/gear";
 
 export const SERVICE_FEE_RATE = 0.08;
 export const MAX_RENTAL_DAYS = 30;
@@ -40,39 +41,54 @@ export interface PriceBreakdown {
   days: number;
   dailyRate: number;
   subtotal: number;
+  /** Smart Insurance rate for the item's category (0.2 photography, 0.1 otherwise). */
+  insuranceRate: number;
+  insurance: number;
   serviceFee: number;
   deposit: number;
-  /** Amount charged now (subtotal + fee). The deposit is a refundable hold. */
+  /** Amount charged now (subtotal + insurance + fee). The deposit is a refundable hold. */
   total: number;
   lineItems: PriceLineItem[];
 }
 
+export interface PricedItem {
+  dailyRate: number;
+  deposit?: number;
+  category: CategoryId;
+}
+
 const toCents = (amount: number) => Math.round(amount * 100);
 const fromCents = (cents: number) => cents / 100;
+const percent = (rate: number) => `${Math.round(rate * 100)}%`;
 
 /** Computes the rental price in integer cents to avoid floating-point drift. */
 export function calculateRentalPrice(
-  dailyRate: number,
+  { dailyRate, deposit = 0, category }: PricedItem,
   from: Date,
   to: Date,
-  deposit = 0,
 ): PriceBreakdown {
   const days = countRentalDays(from, to);
   const subtotalCents = toCents(dailyRate) * days;
+  const insuranceCents = toCents(calculateInsurance(dailyRate, days, category));
   const feeCents = Math.round(subtotalCents * SERVICE_FEE_RATE);
   const subtotal = fromCents(subtotalCents);
+  const insuranceRate = getInsuranceRate(category);
+  const insurance = fromCents(insuranceCents);
   const serviceFee = fromCents(feeCents);
 
   return {
     days,
     dailyRate,
     subtotal,
+    insuranceRate,
+    insurance,
     serviceFee,
     deposit,
-    total: fromCents(subtotalCents + feeCents),
+    total: fromCents(subtotalCents + insuranceCents + feeCents),
     lineItems: [
       { label: `${formatCurrency(dailyRate)} × ${days} ${days === 1 ? "día" : "días"}`, amount: subtotal },
-      { label: `Cargo por servicio (${Math.round(SERVICE_FEE_RATE * 100)}%)`, amount: serviceFee },
+      { label: `Seguro inteligente (${percent(insuranceRate)})`, amount: insurance },
+      { label: `Cargo por servicio (${percent(SERVICE_FEE_RATE)})`, amount: serviceFee },
     ],
   };
 }

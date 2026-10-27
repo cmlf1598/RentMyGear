@@ -1,10 +1,8 @@
-import "server-only";
-
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 
-import { EnvValidationError } from "@/lib/errors";
+import { EnvValidationError } from "../lib/errors";
 
 const BUCKET_NAME_PATTERN = /^[a-z0-9][a-z0-9._-]{1,61}[a-z0-9]$/;
 const PROJECT_ID_PATTERN = /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/;

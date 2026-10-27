@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import { fromISORanges } from "@/lib/date-utils";
-import type { BookedRange, BookedRangeISO } from "@/types/gear";
+import { fromISORanges } from "../../../lib/date-utils";
+import type { BookedRange, BookedRangeISO } from "../../../types/gear";
 
 const POLL_INTERVAL_MS = 30_000;
 

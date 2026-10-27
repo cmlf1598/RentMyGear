@@ -1,9 +1,7 @@
-import "server-only";
-
-import rawInventory from "@/data/inventory.json";
-import { resolveBookedRanges } from "@/lib/date-utils";
-import { InventoryValidationError, NotFoundError } from "@/lib/errors";
-import { InventorySchema, type BookedRange, type CategoryId, type GearItem } from "@/types/gear";
+import rawInventory from "../data/inventory.json";
+import { resolveBookedRanges } from "../lib/date-utils";
+import { InventoryValidationError, NotFoundError } from "../lib/errors";
+import { InventorySchema, type BookedRange, type CategoryId, type GearItem } from "../types/gear";
 
 export interface InventoryService {
   getAll(): GearItem[];

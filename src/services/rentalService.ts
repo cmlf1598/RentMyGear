@@ -1,15 +1,13 @@
-import "server-only";
-
-import { calculateRentalPrice } from "@/lib/date-utils";
-import { RentalValidationError } from "@/lib/errors";
-import { logger as rootLogger, type Logger } from "@/lib/logger";
+import { calculateRentalPrice } from "../lib/date-utils";
+import { RentalValidationError } from "../lib/errors";
+import { logger as rootLogger, type Logger } from "../lib/logger";
 import {
   createRentalRequestSchema,
   toDateOnly,
   toFieldErrors,
   type RentalConfirmation,
-} from "@/lib/validation";
-import { inventoryService as defaultInventory, type InventoryService } from "@/services/inventoryService";
+} from "../lib/validation";
+import { inventoryService as defaultInventory, type InventoryService } from "./inventoryService";
 
 export interface RentalServiceDeps {
   inventory?: InventoryService;
@@ -51,7 +49,7 @@ export function createRentalService({
       await sleep(latencyMs);
 
       const { from, to } = parsed.data;
-      const price = calculateRentalPrice(item.dailyRate, from, to, item.deposit);
+      const price = calculateRentalPrice(item, from, to);
       const createdAt = now();
       const confirmation: RentalConfirmation = {
         confirmationCode: confirmationCode(createdAt),
@@ -59,6 +57,7 @@ export function createRentalService({
         from: toDateOnly(from),
         to: toDateOnly(to),
         days: price.days,
+        insurance: price.insurance,
         total: price.total,
         deposit: price.deposit,
         createdAt: createdAt.toISOString(),

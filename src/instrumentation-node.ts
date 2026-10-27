@@ -1,5 +1,5 @@
-import { getEnv } from "@/config/env";
-import { logger } from "@/lib/logger";
+import { getEnv } from "./config/env";
+import { logger } from "./lib/logger";
 
 /** Node.js-only startup checks; a broken configuration aborts the process. */
 export function validateStartup() {

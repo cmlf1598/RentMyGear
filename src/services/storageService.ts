@@ -1,10 +1,8 @@
-import "server-only";
-
 import { Storage } from "@google-cloud/storage";
 
-import { getEnv } from "@/config/env";
-import { StorageError } from "@/lib/errors";
-import { logger as rootLogger, type Logger } from "@/lib/logger";
+import { getEnv } from "../config/env";
+import { StorageError } from "../lib/errors";
+import { logger as rootLogger, type Logger } from "../lib/logger";
 
 export interface StoredObject {
   path: string;

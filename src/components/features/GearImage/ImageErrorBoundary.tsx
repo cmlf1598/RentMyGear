@@ -4,7 +4,7 @@ import { ImageOff, RotateCcw } from "lucide-react";
 import { catchError, type ErrorInfo } from "next/error";
 import { useEffect } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "../../../lib/utils";
 
 function ImageFallback(props: { itemName: string; className?: string }, { error, retry }: ErrorInfo) {
   useEffect(() => {

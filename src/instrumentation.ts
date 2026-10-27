@@ -12,7 +12,7 @@ export async function register() {
 }
 
 export const onRequestError: Instrumentation.onRequestError = async (error, request, context) => {
-  const { logger } = await import("@/lib/logger");
+  const { logger } = await import("./lib/logger");
   logger.child("request").error("Unhandled request error", {
     error,
     digest: typeof error === "object" && error !== null && "digest" in error ? error.digest : undefined,

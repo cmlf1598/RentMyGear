@@ -1,10 +1,10 @@
 import { ArrowUpRight, Camera, Mountain, Waves, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 
-import { CATEGORY_LIST } from "@/config/categories";
-import { cn } from "@/lib/utils";
-import { inventoryService } from "@/services/inventoryService";
-import type { CategoryId } from "@/types/gear";
+import { CATEGORY_LIST } from "../../config/categories";
+import { cn } from "../../lib/utils";
+import { inventoryService } from "../../services/inventoryService";
+import type { CategoryId } from "../../types/gear";
 
 const STYLES: Record<CategoryId, { icon: LucideIcon; tile: string; iconWrap: string }> = {
   "fotografia-video": {

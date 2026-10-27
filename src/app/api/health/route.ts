@@ -1,9 +1,9 @@
 import { connection, NextResponse } from "next/server";
 
-import { getEnv } from "@/config/env";
-import { serializeError } from "@/lib/errors";
-import { inventoryService } from "@/services/inventoryService";
-import { getStorageService } from "@/services/storageService";
+import { getEnv } from "../../../config/env";
+import { serializeError } from "../../../lib/errors";
+import { inventoryService } from "../../../services/inventoryService";
+import { getStorageService } from "../../../services/storageService";
 
 /** Debug endpoint: configuration and dependency status (never exposes secrets). */
 export async function GET() {

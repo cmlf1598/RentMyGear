@@ -1,12 +1,21 @@
-import { CalendarCheck, PackageCheck, Sparkles } from "lucide-react";
+import { CalendarCheck, PackageCheck, ShieldCheck, Sparkles } from "lucide-react";
 import { Suspense } from "react";
 
-import { CategoryButtons } from "@/components/features/CategoryButtons";
-import { HeroCarousel, HeroCarouselSkeleton } from "@/components/features/HeroCarousel";
+import { CategoryButtons } from "../components/features/CategoryButtons";
+import { CategoryRates } from "../components/features/CategoryRates";
+import { HeroCarousel, HeroCarouselSkeleton } from "../components/features/HeroCarousel";
+import { DEFAULT_INSURANCE_RATE, PHOTOGRAPHY_INSURANCE_RATE } from "../lib/insurance";
+
+const percent = (rate: number) => `${Math.round(rate * 100)}%`;
 
 const HIGHLIGHTS = [
   { icon: Sparkles, title: "Equipo premium", text: "Marcas líderes, revisadas y listas antes de cada renta." },
   { icon: CalendarCheck, title: "Reserva en minutos", text: "Elige tus fechas y conoce el precio final al instante." },
+  {
+    icon: ShieldCheck,
+    title: "Seguro inteligente",
+    text: `Protección incluida en cada renta: ${percent(PHOTOGRAPHY_INSURANCE_RATE)} de la tarifa en fotografía y video, ${percent(DEFAULT_INSURANCE_RATE)} en el resto del equipo.`,
+  },
   { icon: PackageCheck, title: "Depósito reembolsable", text: "Sin sorpresas: liberamos el depósito al devolver el equipo." },
 ];
 
@@ -41,7 +50,9 @@ export default function HomePage() {
         <CategoryButtons />
       </section>
 
-      <section className="grid gap-6 pt-20 sm:grid-cols-3">
+      <CategoryRates />
+
+      <section className="grid gap-6 pt-20 sm:grid-cols-2 lg:grid-cols-4">
         {HIGHLIGHTS.map(({ icon: Icon, title, text }) => (
           <div key={title} className="rounded-3xl bg-secondary/60 p-6">
             <Icon className="size-5 text-brand" />

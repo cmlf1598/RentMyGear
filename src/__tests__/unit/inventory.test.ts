@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { CATEGORIES } from "@/config/categories";
-import rawInventory from "@/data/inventory.json";
-import { InventoryValidationError } from "@/lib/errors";
-import { parseInventory } from "@/services/inventoryService";
-import { CATEGORY_IDS } from "@/types/gear";
+import { CATEGORIES } from "../../config/categories";
+import rawInventory from "../../data/inventory.json";
+import { InventoryValidationError, NotFoundError } from "../../lib/errors";
+import { createInventoryService, parseInventory } from "../../services/inventoryService";
+import { CATEGORY_IDS } from "../../types/gear";
 
 describe("inventory data (src/data/inventory.json)", () => {
   it("passes the inventory schema", () => {
@@ -26,6 +26,20 @@ describe("inventory data (src/data/inventory.json)", () => {
 
     expect(() => parseInventory(data)).toThrow(InventoryValidationError);
     expect(() => parseInventory(data)).toThrow(/\[3\.category\]/);
+  });
+
+  it("serves items by id, picks distinct random items, and rejects unknown ids", () => {
+    const items = parseInventory(rawInventory).slice(0, 4);
+    const service = createInventoryService(items);
+
+    expect(service.getAll()).toBe(items);
+    expect(service.getById(items[2].id)).toBe(items[2]);
+    expect(service.getById("nope")).toBeUndefined();
+    expect(service.getRandom(2, () => 0).map((item) => item.id)).toEqual([items[0].id, items[1].id]);
+    const all = service.getRandom(10);
+    expect(new Set(all.map((item) => item.id)).size).toBe(4);
+    expect(() => service.getAvailability("nope")).toThrow(NotFoundError);
+    expect(() => service.getByIdOrThrow("nope")).toThrow(NotFoundError);
   });
 
   it("rejects duplicate ids", () => {

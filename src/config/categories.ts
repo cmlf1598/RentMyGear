@@ -1,4 +1,4 @@
-import type { CategoryId } from "@/types/gear";
+import type { CategoryId } from "../types/gear";
 
 export interface Category {
   id: CategoryId;

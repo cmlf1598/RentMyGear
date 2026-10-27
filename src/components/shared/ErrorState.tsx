@@ -4,7 +4,7 @@ import { AlertTriangle, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 
 interface ErrorStateProps {
   error: unknown;

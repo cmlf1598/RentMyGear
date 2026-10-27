@@ -1,20 +1,20 @@
 // @vitest-environment jsdom
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { useEffect, useState, type ComponentProps } from "react";
 import { toast } from "sonner";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { GET as getAvailability } from "@/app/api/availability/[id]/route";
-import { POST as postRental } from "@/app/api/rentals/route";
-import { CategoryButtons } from "@/components/features/CategoryButtons";
-import { GearGrid } from "@/components/features/GearGrid";
-import { RentalFlow } from "@/components/features/RentalFlow";
-import { Toaster } from "@/components/ui/sonner";
-import { CATEGORIES } from "@/config/categories";
-import { calculateRentalPrice, formatCurrency, toISORanges } from "@/lib/date-utils";
-import { inventoryService } from "@/services/inventoryService";
-import type { CategoryId } from "@/types/gear";
+import { GET as getAvailability } from "../../app/api/availability/[id]/route";
+import { POST as postRental } from "../../app/api/rentals/route";
+import { CategoryButtons } from "../../components/features/CategoryButtons";
+import { GearGrid } from "../../components/features/GearGrid";
+import { RentalFlow } from "../../components/features/RentalFlow";
+import { Toaster } from "../../components/ui/sonner";
+import { CATEGORIES } from "../../config/categories";
+import { calculateRentalPrice, formatCurrency, toISORanges } from "../../lib/date-utils";
+import { inventoryService } from "../../services/inventoryService";
+import type { CategoryId } from "../../types/gear";
 
 /** Minimal in-memory router so links behave like client-side navigation. */
 const router = vi.hoisted(() => ({ pathname: "/", navigate: (() => {}) as (href: string) => void }));
@@ -40,13 +40,19 @@ vi.mock("next/navigation", () => ({
 }));
 
 // GearImage is an async Server Component (image resolution); it has its own edge-case tests.
-vi.mock("@/components/features/GearImage/GearImage", () => ({
+vi.mock("../../components/features/GearImage/GearImage", () => ({
   GearImage: ({ item }: { item: { name: string } }) => <div role="img" aria-label={item.name} />,
 }));
 
+// connection() throws outside a Next.js request; the route handlers only use it to opt out of prerendering.
+vi.mock("next/server", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("next/server")>()),
+  connection: async () => {},
+}));
+
 // The mock booking API waits 900 ms to feel real; tests don't need to.
-vi.mock("@/services/rentalService", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@/services/rentalService")>();
+vi.mock("../../services/rentalService", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../services/rentalService")>();
   return { ...actual, rentalService: actual.createRentalService({ latencyMs: 0 }) };
 });
 
@@ -185,24 +191,29 @@ describe("rental flow", () => {
     expect(screen.getByText(/3 días/)).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Continuar" }));
 
-    const expected = calculateRentalPrice(ITEM.dailyRate, new Date(2026, 5, 10), new Date(2026, 5, 12), ITEM.deposit);
-    expect(expected.total).toBe(145.8);
+    // Water sports → Smart Insurance 10%: 45 × 3 = 135 + 13.50 insurance + 10.80 fee = 159.30
+    const expected = calculateRentalPrice(ITEM, new Date(2026, 5, 10), new Date(2026, 5, 12));
+    expect(expected).toMatchObject({ insurance: 13.5, total: 159.3 });
     expect(screen.getByText(`${formatCurrency(ITEM.dailyRate)} × 3 días`)).toBeInTheDocument();
+    expect(screen.getByText("Seguro inteligente (10%)")).toBeInTheDocument();
+    expect(screen.getByText(formatCurrency(13.5))).toBeInTheDocument();
     expect(screen.getByText(formatCurrency(expected.total))).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Continuar" }));
 
+    expect(screen.getByText("Seguro inteligente (10%)").nextSibling).toHaveTextContent(formatCurrency(13.5));
     expect(toastsOfType("success")).toEqual([]);
     await user.click(screen.getByRole("button", { name: "Confirmar Renta" }));
 
     await waitFor(() => expect(toastsOfType("success")).toHaveLength(1));
     const [successToast] = toastsOfType("success");
     expect(successToast).toContain("¡Renta confirmada!");
-    expect(successToast).toMatch(new RegExp(`${formatCurrency(145.8).replace("$", "\\$")} · RMG-[A-Z0-9]+`));
+    expect(successToast).toMatch(new RegExp(`${formatCurrency(159.3).replace("$", "\\$")} · RMG-[A-Z0-9]+`));
     expect(toastsOfType("error")).toEqual([]);
 
     const confirmed = screen.getByRole("status");
     expect(within(confirmed).getByText("¡Renta confirmada!")).toBeInTheDocument();
-    expect(within(confirmed).getByText(formatCurrency(145.8))).toBeInTheDocument();
+    expect(within(confirmed).getByText(formatCurrency(159.3))).toBeInTheDocument();
+    expect(within(confirmed).getByText(/Incluye seguro inteligente/)).toHaveTextContent(formatCurrency(13.5));
     expect(rentalRequests()).toEqual([
       { method: "POST", path: "/api/rentals", body: { itemId: ITEM.id, from: "2026-06-10", to: "2026-06-12" } },
     ]);
@@ -305,5 +316,76 @@ describe("rental flow", () => {
     expect(screen.getByRole("alert")).toHaveTextContent("Error de conexión. Inténtalo de nuevo.");
     expect(screen.getByRole("button", { name: "Confirmar Renta" })).toBeEnabled();
     expect(toastsOfType("success")).toEqual([]);
+  });
+});
+
+describe("rental flow — navigation and recovery", () => {
+  it("goes back from confirmation to the summary and to the dates; a single day reads '1 día'", async () => {
+    const { user } = renderApp(`/gear/${ITEM.id}`);
+
+    await user.click(dayButton("2026-06-10"));
+    await user.click(screen.getByRole("button", { name: "Continuar" }));
+    expect(screen.getByText(`${formatCurrency(ITEM.dailyRate)} × 1 día`)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Continuar" }));
+    expect(screen.getByText("Duración").nextSibling).toHaveTextContent("1 día");
+
+    await user.click(screen.getByRole("button", { name: "Atrás" }));
+    expect(screen.getByRole("button", { name: "Cambiar fechas" })).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Cambiar fechas" }));
+    expect(screen.getByText(/· 1 día$/)).toBeInTheDocument();
+    expect(rentalRequests()).toEqual([]);
+  });
+
+  it("starts a new rental from the confirmation screen", async () => {
+    const { user } = renderApp(`/gear/${ITEM.id}`);
+    await user.click(await goToConfirmation(user, "2026-06-10", "2026-06-12"));
+    await user.click(await screen.findByRole("button", { name: "Nueva renta" }));
+
+    expect(screen.getByText("Elige la fecha de recogida")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeDisabled();
+  });
+
+  it("re-validates on Continuar against availability refreshed in the background", async () => {
+    const { user } = renderApp(`/gear/${ITEM.id}`);
+    await pickDates(user, "2026-06-10", "2026-06-12");
+
+    override = (request) =>
+      request.url.includes("/api/availability/")
+        ? Response.json({
+            itemId: ITEM.id,
+            bookedRanges: toISORanges([{ from: new Date(2026, 5, 11), to: new Date(2026, 5, 11) }]),
+            checkedAt: TODAY.toISOString(),
+          })
+        : undefined;
+    fireEvent.focus(window); // the hook also refreshes every 30 s
+    await waitFor(() => expect(dayButton("2026-06-11")).toBeDisabled());
+
+    await user.click(screen.getByRole("button", { name: "Continuar" }));
+    expect(screen.getByRole("alert")).toHaveTextContent("Las fechas seleccionadas incluyen días no disponibles");
+    expect(screen.queryByRole("button", { name: "Cambiar fechas" })).not.toBeInTheDocument();
+  });
+
+  it("uses a generic message when the server rejects the booking without one", async () => {
+    vi.spyOn(console, "warn").mockImplementation(() => {});
+    const { user } = renderApp(`/gear/${ITEM.id}`);
+    const confirm = await goToConfirmation(user, "2026-06-10", "2026-06-12");
+
+    override = (request) => (request.method === "POST" ? Response.json({}, { status: 500 }) : undefined);
+    await user.click(confirm);
+
+    await waitFor(() => expect(toastsOfType("error")).toEqual([expect.stringContaining("No pudimos confirmar la renta")]));
+    expect(screen.getByRole("alert")).toHaveTextContent("No pudimos confirmar la renta");
+  });
+
+  it("says so when live availability can't be reached", async () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    renderApp(`/gear/${ITEM.id}`);
+
+    override = (request) =>
+      request.url.includes("/api/availability/") ? new Response("down", { status: 503 }) : undefined;
+    fireEvent.focus(window);
+
+    expect(await screen.findByText("Sin conexión con disponibilidad")).toBeInTheDocument();
+    expect(warn).toHaveBeenCalledWith("[useAvailability] refresh failed", expect.objectContaining({ itemId: ITEM.id }));
   });
 });

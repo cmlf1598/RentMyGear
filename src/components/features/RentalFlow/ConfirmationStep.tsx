@@ -1,9 +1,9 @@
 import { CheckCircle2, Loader2 } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { formatCurrency, formatDateRange, type PriceBreakdown } from "@/lib/date-utils";
-import type { RentalConfirmation } from "@/lib/validation";
+import { Button } from "../../ui/button";
+import { formatCurrency, formatDateRange, type PriceBreakdown } from "../../../lib/date-utils";
+import type { RentalConfirmation } from "../../../lib/validation";
 
 interface ConfirmStepProps {
   itemName: string;
@@ -32,6 +32,10 @@ export function ConfirmationStep({
         <Row label="Equipo" value={itemName} />
         <Row label="Fechas" value={formatDateRange(from, to)} />
         <Row label="Duración" value={`${price.days} ${price.days === 1 ? "día" : "días"}`} />
+        <Row
+          label={`Seguro inteligente (${Math.round(price.insuranceRate * 100)}%)`}
+          value={formatCurrency(price.insurance)}
+        />
         <Row label="Total a pagar" value={formatCurrency(price.total)} strong />
         <Row label="Depósito reembolsable" value={formatCurrency(price.deposit)} />
       </div>
@@ -96,6 +100,9 @@ export function RentalConfirmedState({
         <p className="mt-1 font-mono text-lg font-semibold tracking-wider">{confirmation.confirmationCode}</p>
         <p className="mt-3 text-muted-foreground">
           Total pagado: <span className="font-medium text-foreground">{formatCurrency(confirmation.total)}</span>
+        </p>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Incluye seguro inteligente: <span className="font-medium">{formatCurrency(confirmation.insurance)}</span>
         </p>
       </div>
 

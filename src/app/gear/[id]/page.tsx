@@ -1,18 +1,19 @@
 import { addDays } from "date-fns";
-import { ChevronLeft, MapPin, Star } from "lucide-react";
+import { ChevronLeft, MapPin, ShieldCheck, Star } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
 
-import { GearImage } from "@/components/features/GearImage/GearImage";
-import { RentalFlow } from "@/components/features/RentalFlow";
-import { Badge } from "@/components/ui/badge";
-import { CATEGORIES } from "@/config/categories";
-import { formatCurrency, formatDate, isRangeAvailable, toISORanges } from "@/lib/date-utils";
-import { inventoryService } from "@/services/inventoryService";
-import type { GearItem } from "@/types/gear";
+import { GearImage } from "../../../components/features/GearImage/GearImage";
+import { RentalFlow } from "../../../components/features/RentalFlow";
+import { Badge } from "../../../components/ui/badge";
+import { CATEGORIES } from "../../../config/categories";
+import { formatCurrency, formatDate, isRangeAvailable, toISORanges } from "../../../lib/date-utils";
+import { calculateInsurance, getInsuranceRate } from "../../../lib/insurance";
+import { inventoryService } from "../../../services/inventoryService";
+import type { GearItem } from "../../../types/gear";
 
 export function generateStaticParams() {
   return inventoryService.getAll().map((item) => ({ id: item.id }));
@@ -106,6 +107,11 @@ export default async function GearPage({ params }: PageProps<"/gear/[id]">) {
             <p className="mt-1 text-sm text-muted-foreground">
               Depósito reembolsable de {formatCurrency(item.deposit)}
             </p>
+            <p className="mt-1 inline-flex items-center gap-1 text-sm text-muted-foreground">
+              <ShieldCheck className="size-4 text-brand" />
+              Seguro inteligente: {Math.round(getInsuranceRate(item.category) * 100)}% de la tarifa (
+              {formatCurrency(calculateInsurance(item.dailyRate, 1, item.category))} / día)
+            </p>
             <div className="mt-6">
               <Suspense fallback={<RentalPanelSkeleton />}>
                 <RentalPanel item={item} />
@@ -143,7 +149,7 @@ async function RentalPanel({ item }: { item: GearItem }) {
 
   return (
     <RentalFlow
-      item={{ id: item.id, name: item.name, dailyRate: item.dailyRate, deposit: item.deposit }}
+      item={{ id: item.id, name: item.name, dailyRate: item.dailyRate, deposit: item.deposit, category: item.category }}
       initialBookedRanges={booked}
     />
   );

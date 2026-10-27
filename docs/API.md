@@ -189,19 +189,25 @@ curl -X POST http://localhost:3000/api/rentals \
 
 ```json
 {
-  "confirmationCode": "RMG-RYO3IMHCT",
+  "confirmationCode": "RMG-YOKXCRVG0",
   "itemId": "sony-a7-iv",
   "from": "2026-12-05",
   "to": "2026-12-07",
   "days": 3,
-  "total": 210.6,
+  "insurance": 39,
+  "total": 249.6,
   "deposit": 800,
-  "createdAt": "2026-10-27T02:09:27.363Z"
+  "createdAt": "2026-10-27T02:42:40.497Z"
 }
 ```
 
-- `total` is $65 × 3 days plus the 8% service fee.
-- `deposit` is a refundable hold, separate from `total`.
+| Field | Meaning |
+|---|---|
+| `insurance` | Smart Insurance for the whole rental: 20% of $65 × 3 days, because this is photography equipment. Every other category pays 10%; the same booking of `starboard-touring-126` ($45/day, water sports) returns `"insurance": 13.5`. |
+| `total` | Amount charged: rental ($195) + insurance ($39) + the 8% service fee on the rental ($15.60). |
+| `deposit` | Refundable hold, not part of `total`. |
+
+Any `insurance` or `total` in the request body is ignored; the server always recalculates both.
 
 **Errors**
 

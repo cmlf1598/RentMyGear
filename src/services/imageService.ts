@@ -1,13 +1,11 @@
-import "server-only";
-
 import { GoogleGenAI } from "@google/genai";
 
-import { CATEGORIES } from "@/config/categories";
-import { getEnv } from "@/config/env";
-import { ImageGenerationError } from "@/lib/errors";
-import { logger as rootLogger, type Logger } from "@/lib/logger";
-import { getStorageService, type StorageService } from "@/services/storageService";
-import type { GearItem, ResolvedImage } from "@/types/gear";
+import { CATEGORIES } from "../config/categories";
+import { getEnv } from "../config/env";
+import { ImageGenerationError } from "../lib/errors";
+import { logger as rootLogger, type Logger } from "../lib/logger";
+import { getStorageService, type StorageService } from "./storageService";
+import type { GearItem, ResolvedImage } from "../types/gear";
 
 export const GENERATED_PREFIX = "generated";
 

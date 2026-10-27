@@ -1,4 +1,4 @@
-import { GearGridSkeleton } from "@/components/features/GearGrid";
+import { GearGridSkeleton } from "../../../components/features/GearGrid";
 
 export default function CategoryLoading() {
   return (

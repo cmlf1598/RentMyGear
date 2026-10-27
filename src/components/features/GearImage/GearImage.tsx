@@ -3,12 +3,12 @@ import Image from "next/image";
 import { connection } from "next/server";
 import { Suspense } from "react";
 
-import { ImageErrorBoundary } from "@/components/features/GearImage/ImageErrorBoundary";
-import { ImageGenerationError } from "@/lib/errors";
-import { describeImageFailure, type ImageFailureInfo } from "@/lib/image-failure";
-import { cn } from "@/lib/utils";
-import { getImageService } from "@/services/imageService";
-import type { GearItem } from "@/types/gear";
+import { ImageErrorBoundary } from "./ImageErrorBoundary";
+import { ImageGenerationError } from "../../../lib/errors";
+import { describeImageFailure, type ImageFailureInfo } from "../../../lib/image-failure";
+import { cn } from "../../../lib/utils";
+import { getImageService } from "../../../services/imageService";
+import type { GearItem } from "../../../types/gear";
 
 interface GearImageProps {
   item: GearItem;

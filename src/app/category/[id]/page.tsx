@@ -3,10 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-import { GearGrid, GearGridSkeleton } from "@/components/features/GearGrid";
-import { CATEGORY_LIST, getCategory } from "@/config/categories";
-import { cn } from "@/lib/utils";
-import { inventoryService } from "@/services/inventoryService";
+import { GearGrid, GearGridSkeleton } from "../../../components/features/GearGrid";
+import { CATEGORY_LIST, getCategory } from "../../../config/categories";
+import { cn } from "../../../lib/utils";
+import { inventoryService } from "../../../services/inventoryService";
 
 export function generateStaticParams() {
   return CATEGORY_LIST.map((category) => ({ id: category.id }));

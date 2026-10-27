@@ -1,7 +1,7 @@
 import { connection, NextResponse } from "next/server";
 
-import { toISORanges } from "@/lib/date-utils";
-import { inventoryService } from "@/services/inventoryService";
+import { toISORanges } from "../../../../lib/date-utils";
+import { inventoryService } from "../../../../services/inventoryService";
 
 export async function GET(_request: Request, { params }: RouteContext<"/api/availability/[id]">) {
   await connection();

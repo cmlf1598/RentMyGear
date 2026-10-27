@@ -111,6 +111,7 @@ npm run dev
 | `npm run lint` | ESLint (`eslint-config-next`, including the React hooks/compiler rules) |
 | `npm run typecheck` | `tsc --noEmit` (strict) |
 | `npm test` / `npm run test:watch` | Vitest: unit, integration and edge-case tests |
+| `npm run test:coverage` | Tests plus coverage. **Fails below 100%** for the rental module and Smart Insurance (scope in `vitest.config.mts`). HTML report in `coverage/`. |
 | `npm run setup:gcs` | Create or check the bucket. `-- --smoke-only` only runs the permission test. |
 | `npm run seed:images` | Fill `imageURL` from Unsplash for items that have none. Add `-- --dry-run` to preview, or `-- --force` to re-seed every item. |
 
@@ -149,7 +150,8 @@ The sequence diagram in [ARCHITECTURE.md](ARCHITECTURE.md#7-image-resolution-flo
    `connection()`, reads the booked ranges and renders [`RentalFlow`](../src/components/features/RentalFlow/RentalFlow.tsx).
 2. `RentalFlow` is a reducer-driven wizard ([`rentalFlowReducer.ts`](../src/components/features/RentalFlow/rentalFlowReducer.ts)).
    Its steps are `DateSelectionStep` → `PriceSummaryStep` → `ConfirmationStep`.
-   - Prices come from [`calculateRentalPrice`](../src/lib/date-utils.ts).
+   - Prices come from [`calculateRentalPrice`](../src/lib/date-utils.ts), which adds Smart Insurance from
+     [`insurance.ts`](../src/lib/insurance.ts): 20% for photography and video, 10% for everything else.
    - Validation uses [`createRentalRequestSchema`](../src/lib/validation.ts).
 3. Confirming the booking re-checks availability (`useAvailability.refresh()`), then calls `POST /api/rentals`
    ([route](../src/app/api/rentals/route.ts) → [`rentalService`](../src/services/rentalService.ts)). The server
@@ -166,8 +168,9 @@ The sequence diagram in [ARCHITECTURE.md](ARCHITECTURE.md#7-image-resolution-flo
   - I/O and business rules → `src/services`
   - Zod schemas and types → `src/types`
   - static configuration → `src/config`
-- **Services** are created with a factory, `createXService(deps)`, and use one default instance. They
-  `import "server-only"`. Pass fakes through the factory in tests instead of mocking modules.
+- **Services** are created with a factory, `createXService(deps)`, and use one default instance. Pass fakes
+  through the factory in tests instead of mocking modules. Don't add `import "server-only"`: it breaks loading
+  the root page in plain Vitest, which the automatic grader does. See [Services](ARCHITECTURE.md#6-services).
 - **Server Components first.** Add `"use client"` only for state, effects or browser APIs. Put anything
   request-dependent behind `await connection()`, inside a `<Suspense>` boundary (see
   [Rendering model](ARCHITECTURE.md#4-rendering-model)).
@@ -183,9 +186,11 @@ The sequence diagram in [ARCHITECTURE.md](ARCHITECTURE.md#7-image-resolution-flo
   - Dates are local calendar days, and travel as `yyyy-MM-dd` strings (`toDateOnly`).
   - Day counts are inclusive (`countRentalDays`).
   - Amounts are calculated in integer cents and formatted with `formatCurrency` (USD, `es-US`).
-- **Imports** use the `@/` alias for `src/`.
+- **Imports** inside `src/` are relative (`../lib/insurance`), not `@/…`, so any test runner can resolve them
+  without path-alias config. `npx shadcn add` still generates `@/` imports; convert them to relative paths.
 - **Comments** explain *why*, not what.
-- **Tests** go in `tests/{unit,integration,edge-cases}` (see [TESTING.md](TESTING.md)).
+- **Tests** go in `src/__tests__/{unit,integration,edge-cases}` (see [TESTING.md](TESTING.md)). Write the test
+  first and watch it fail, then implement. Smart Insurance was built that way.
 
 ## 6. Debugging toolbox
 
@@ -312,7 +317,7 @@ checks the data.
 - The id appears in URLs, so make it a lowercase ASCII slug with no accents: `ciclismo`, not `Ciclismo` or
   `ciclísmo`.
 - Ship the category **together with at least one item**. A category with no items is valid code, but shows an
-  empty grid, and `tests/unit/inventory.test.ts` fails on purpose.
+  empty grid, and `src/__tests__/unit/inventory.test.ts` fails on purpose.
 
 ### Step by step (example: `ciclismo`)
 
@@ -344,6 +349,11 @@ ciclismo: {
 
 The UI copy is Spanish. `imagePromptContext` is English and steers the style of Nano Banana's images for this
 category.
+
+**Smart Insurance:** the new category is charged **10%** automatically (`getInsuranceRate` in
+[`src/lib/insurance.ts`](../src/lib/insurance.ts)). If it should be 20%, like photography, add a failing case to
+`src/__tests__/unit/insurance.test.ts` first, then change `getInsuranceRate`. The test "only photography gets 20%"
+exists to make that decision deliberate.
 
 **4. Give the tile its style**: [`src/components/features/CategoryButtons.tsx`](../src/components/features/CategoryButtons.tsx)
 
@@ -395,7 +405,7 @@ InventoryValidationError: Inventory data is invalid:
   - [3.category] Invalid option: expected one of "fotografia-video"|"montana-camping"|"deportes-acuaticos"
 ```
 
-`tests/unit/inventory.test.ts` catches this before you start the server. It also checks that every category
+`src/__tests__/unit/inventory.test.ts` catches this before you start the server. It also checks that every category
 has a config entry and at least one item.
 
 ## 9. Troubleshooting
@@ -415,8 +425,8 @@ has a config entry and at least one item.
 
 ## 10. Before you open a pull request
 
-- [ ] `npm run lint`, `npm run typecheck` and `npm test` all pass.
-- [ ] New logic has tests in `tests/` (unit for pure functions, integration for UI flows).
+- [ ] `npm run lint`, `npm run typecheck` and `npm run test:coverage` all pass (coverage stays at 100%).
+- [ ] New logic has tests in `src/__tests__/`, written first (unit for pure functions, integration for UI flows).
 - [ ] Anything request-dependent is behind `connection()` and inside `<Suspense>`. A client component's first
       render doesn't use randomness or the current time.
 - [ ] New inputs are validated with Zod. New failures use an `AppError` subclass with a useful `cause`.
