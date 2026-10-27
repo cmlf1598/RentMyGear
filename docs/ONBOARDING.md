@@ -122,7 +122,7 @@ The quickest way to learn the codebase is to follow three requests through it.
 
 1. [`src/app/layout.tsx`](../src/app/layout.tsx) renders the header, footer and toaster. The header and footer
    build their category links from `CATEGORY_LIST`.
-2. [`src/app/(home)/page.tsx`](../src/app/(home)/page.tsx) renders the static hero copy,
+2. [`src/app/page.tsx`](../src/app/page.tsx) renders the static hero copy,
    [`CategoryButtons`](../src/components/features/CategoryButtons.tsx) (which reads
    `inventoryService.countByCategory()`), and a `<Suspense>` around `HeroCarousel`.
 3. [`HeroCarousel`](../src/components/features/HeroCarousel.tsx) calls `await connection()` (so the result is
@@ -193,7 +193,7 @@ The sequence diagram in [ARCHITECTURE.md](ARCHITECTURE.md#7-image-resolution-flo
 |---|---|
 | **Terminal output** of `npm run dev` | Server logs: `[LEVEL] [app:scope] message {context}`. Set `LOG_LEVEL=debug` in `.env.local` to see every GCS call with its timing. |
 | `.next/dev/logs/` | Next.js's own dev-server log files |
-| **Browser console** | Errors caught by boundaries are logged as `[ErrorBoundary:<name>]` (`root`, `home`, `category`, `gear`, `image`). `RentalFlow` logs `[RentalFlow] rental rejected` and `[RentalFlow] rental request failed`. |
+| **Browser console** | Errors caught by boundaries are logged as `[ErrorBoundary:<name>]` (`root`, `category`, `gear`, `image`). `RentalFlow` logs `[RentalFlow] rental rejected` and `[RentalFlow] rental request failed`. |
 | `GET /api/health` | Config, inventory counts, items without images, a live GCS check |
 | `GET /api/images/<id>` | Where an item's image comes from (`origin`, `memory`, `gcs`, `generated`), or why it fails. Add `?fresh` to skip the cache and the cooldowns. |
 | React DevTools | Inspect `RentalFlow` state (step, range, `submitting`, errors) |

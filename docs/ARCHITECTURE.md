@@ -94,7 +94,7 @@ flowchart LR
 │   ├── instrumentation-node.ts  # Node-only start-up check (exits the process if the config is invalid)
 │   ├── app/                     # Routes (App Router)
 │   │   ├── layout.tsx           # <html lang="es">, header, footer, <Toaster>
-│   │   ├── (home)/              # "/"  — page, loading, error
+│   │   ├── page.tsx             # "/"  — home page (its errors go to app/error.tsx)
 │   │   ├── category/[id]/       # "/category/:id"
 │   │   ├── gear/[id]/           # "/gear/:id"  — detail page + RentalFlow
 │   │   ├── api/                 # health, images/[id], availability/[id], rentals
@@ -500,7 +500,7 @@ in production.
 **Error boundaries**, from broadest to narrowest:
 
 - `global-error.tsx` replaces the whole document.
-- `app/error.tsx` and each route's `error.tsx` (home, category, gear) show `ErrorState` with a retry button.
+- `app/error.tsx` (covers the home page) and the `error.tsx` of the category and gear routes show `ErrorState` with a retry button.
 - `ImageErrorBoundary` covers a single image.
 - `not-found.tsx` handles unknown categories and items, through `notFound()`.
 

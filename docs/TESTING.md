@@ -9,7 +9,7 @@ rental flow in the UI, and the Nano Banana image fallback when Unsplash returns 
 |---|---|
 | Date | 2026-10-26 |
 | Command | `npm test` |
-| Result | **56 / 56 tests passed** in 5 files (~6 s) |
+| Result | **57 / 57 tests passed** in 6 files (~6 s) |
 | Lint / typecheck | `npm run lint`, `npm run typecheck`: clean |
 | Environment | Node 24.18, Windows 11, Vitest 5.0.5, React Testing Library 16.3.3, jsdom 30.1.3 |
 
@@ -19,6 +19,7 @@ rental flow in the UI, and the Nano Banana image fallback when Unsplash returns 
 | `tests/unit/validation.test.ts` | Unit | 10 | ✅ all passed |
 | `tests/unit/inventory.test.ts` | Unit (data guard) | 4 | ✅ all passed |
 | `tests/integration/rental-flow.test.tsx` | Integration (jsdom) | 7 | ✅ all passed |
+| `tests/integration/home-page.test.tsx` | Smoke (jsdom) | 1 | ✅ all passed |
 | `tests/edge-cases/unsplash-404-nano-banana.test.ts` | Edge cases | 10 | ✅ all passed |
 
 ### Do the tests catch real bugs?
