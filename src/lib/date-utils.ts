@@ -57,8 +57,7 @@ export function calculateRentalPrice(
   to: Date,
   deposit = 0,
 ): PriceBreakdown {
-  // Billable days: at least one, even for same-day pickup and return.
-  const days = Math.max(1, differenceInCalendarDays(startOfDay(to), startOfDay(from)));
+  const days = countRentalDays(from, to);
   const subtotalCents = toCents(dailyRate) * days;
   const feeCents = Math.round(subtotalCents * SERVICE_FEE_RATE);
   const subtotal = fromCents(subtotalCents);

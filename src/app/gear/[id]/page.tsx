@@ -143,13 +143,7 @@ async function RentalPanel({ item }: { item: GearItem }) {
 
   return (
     <RentalFlow
-      item={{
-        id: item.id,
-        name: item.name,
-        category: item.category,
-        dailyRate: item.dailyRate,
-        deposit: item.deposit,
-      }}
+      item={{ id: item.id, name: item.name, dailyRate: item.dailyRate, deposit: item.deposit }}
       initialBookedRanges={booked}
     />
   );
