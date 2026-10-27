@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { CategoryButtons } from "../components/features/CategoryButtons";
 import { CategoryRates } from "../components/features/CategoryRates";
 import { HeroCarousel, HeroCarouselSkeleton } from "../components/features/HeroCarousel";
+import { SectionErrorBoundary } from "../components/shared/SectionErrorBoundary";
 import { DEFAULT_INSURANCE_RATE, PHOTOGRAPHY_INSURANCE_RATE } from "../lib/insurance";
 
 const percent = (rate: number) => `${Math.round(rate * 100)}%`;
@@ -33,9 +34,11 @@ export default function HomePage() {
       </section>
 
       <section aria-label="Equipos destacados">
-        <Suspense fallback={<HeroCarouselSkeleton />}>
-          <HeroCarousel />
-        </Suspense>
+        <SectionErrorBoundary name="hero">
+          <Suspense fallback={<HeroCarouselSkeleton />}>
+            <HeroCarousel />
+          </Suspense>
+        </SectionErrorBoundary>
       </section>
 
       <section className="pt-20" aria-labelledby="categorias">

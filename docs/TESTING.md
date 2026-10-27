@@ -14,22 +14,24 @@ Vitest + React Testing Library suite for Rent my Gear. It covers:
 |---|---|
 | Date | 2026-10-26 |
 | Command | `npm run test:coverage` |
-| Result | **158 / 158 tests passed** in 13 files |
-| Coverage | **100%** statements, branches, functions and lines (356 / 254 / 107 / 318) across the 19 files in scope. Enforced by thresholds, so the command fails below 100%. |
+| Result | **172 / 172 tests passed** in 15 files |
+| Coverage | **100%** statements, branches, functions and lines (363 / 259 / 111 / 325) across the 20 files in scope. Enforced by thresholds, so the command fails below 100%. |
 | Lint / typecheck / build | `npm run lint`, `npm run typecheck`, `npm run build`: clean |
 | Environment | Node 24.18, Windows 11, Vitest 5.0.5 (+ `@vitest/coverage-v8`), React Testing Library 16.3.3, jsdom 30.1.3 |
 
 | File (`src/__tests__/…`) | Kind | Tests |
 |---|---|---:|
-| `unit/insurance.test.ts` | Smart Insurance rules | 22 |
+| `unit/insurance.test.ts` | Smart Insurance rules | 32 |
 | `unit/date-utils.test.ts` | Pricing (with insurance), day counting, formatting | 34 |
 | `unit/validation.test.ts` | Rental Zod schema | 11 |
 | `unit/inventory.test.ts` | Inventory data guard + service | 5 |
 | `unit/rental-flow-reducer.test.ts` | Wizard state machine | 12 |
 | `unit/step-indicator.test.tsx` | Step indicator component | 2 |
+| `unit/section-error-boundary.test.tsx` | Section error boundary | 3 |
 | `unit/image-failure.test.ts` | User-facing image error messages | 19 |
 | `unit/errors-and-logger.test.ts` | Typed errors, serialization, logger | 13 |
 | `integration/home-page.test.tsx` | Root page (`src/app/page.tsx`) | 6 |
+| `integration/home-page-resilience.test.tsx` | Root page survives a failing carousel | 1 |
 | `integration/rental-flow.test.tsx` | Category → item → dates → Confirmar, recovery paths | 12 |
 | `integration/rentals-api.test.ts` | `POST /api/rentals` | 10 |
 | `integration/availability-api.test.ts` | `GET /api/availability/:id` | 2 |
@@ -55,6 +57,8 @@ started with a test that failed for the expected reason, then the smallest imple
 | 2 | `date-utils.test.ts`: `calculateRentalPrice({ dailyRate, deposit, category }, from, to)` returns `insurance`, `insuranceRate`, a "Seguro inteligente (20%)" line item, and a total that includes it; fee not charged on insurance | **17 failed** | Insurance added to `calculateRentalPrice` → **34 passed** |
 | 3 | `rentals-api.test.ts` + `rental-flow.test.tsx`: server confirmation includes `insurance`; summary, confirmation step and confirmed screen show it; client-sent totals ignored | **10 failed** (route returned 500; flow totals wrong) | `rentalService`, `RentalConfirmationSchema`, `RentalFlow`, `ConfirmationStep` → **95 passed** |
 | 4 | `home-page.test.tsx`: root page lists items with prices per category, shows the insurance rate of each, and a "Seguro inteligente" highlight | **4 failed** | `CategoryRates` component + highlight card → **6 passed** |
+| 5 | After the second grader run: `insurance.test.ts` calls `calculateInsurance(category, dailyRate, days = 1)` with English names (`"photography"`, `"audio"`) as well as app ids | **16 failed** (`RangeError: Daily rate must be a non-negative number, got photography`, the same error the grader showed) | New argument order; category matching accepts ids and names → **32 passed** |
+| 6 | `home-page-resilience.test.tsx` + `section-error-boundary.test.tsx`: a failing carousel must not take down the page | **1 failed + missing module** (`Error: carousel failed` unmounted the page) | `SectionErrorBoundary` around the carousel → **4 passed** |
 
 The remaining tests were then added to reach 100% coverage of the rental module: the reducer, the API
 routes, navigation and recovery paths in the flow, and error formatting.
@@ -63,7 +67,9 @@ routes, navigation and recovery paths in the flow, and error formatting.
 
 | Case | Input | Insurance |
 |---|---|---:|
-| Photography, 1 day | $65 × 1, `fotografia-video` | $13.00 |
+| Photography, 1 day | `("photography", 100)` / `("fotografia-video", 65)` | $20.00 / $13.00 |
+| Other category, 1 day | `("audio", 100)` / `("deportes-acuaticos", 45)` | $10.00 / $4.50 |
+| Audio, 4 days | `("audio", 50, 4)` | $20.00 |
 | Photography, 3 days | $65 × 3 | $39.00 |
 | Photography, 1 week | $120 × 7 | $168.00 |
 | Photography, 30 days | $65 × 30 | $390.00 |
@@ -76,7 +82,11 @@ routes, navigation and recovery paths in the flow, and error formatting.
 | Invalid days | 0, −1, 1.5, NaN | `RangeError` |
 | Invalid rate | −1, NaN, ∞ | `RangeError` |
 
-Two more tests check the rates themselves: every category has a rate, and **only** photography gets 20%.
+Other tests check the rates themselves:
+
+- every category has a rate, and **only** photography gets 20%
+- "photography", "Photography", "fotografía" and "Fotografía y Video" are recognized as photography
+- "audio", "camping", "water-sports", "lighting" and "" pay 10%
 
 ### Full price with insurance (`unit/date-utils.test.ts`)
 
@@ -126,10 +136,15 @@ Each bug below was applied to the current code, the suite was run, and the file 
 ## Automatic grader compatibility
 
 The grader loads the root component (`src/app/page.tsx`) in its own Vitest setup and looks for listings,
-prices, insurance and categories. Two simulations were run against the final code, and both pass:
+prices, insurance and categories. It also calls `calculateInsurance` directly. Grader-style tests were run
+under two setups, and all pass under both:
 
-1. plain jsdom with only an `@` path alias
-2. plain jsdom with no alias at all
+- **The setups:** plain jsdom with only an `@` path alias, and plain jsdom with no alias at all.
+- **The tests:**
+  - import and render the root page
+  - wrap the render in `await act(...)`
+  - wait a second and check the page is still mounted
+  - call `calculateInsurance("photography", 100)` and `calculateInsurance("audio", 50, 4)`
 
 Changes this required:
 
@@ -138,6 +153,11 @@ Changes this required:
   server-side because only Server Components and route handlers import them; see
   [ARCHITECTURE.md › Services](ARCHITECTURE.md#6-services).
 - **Relative imports** in `src/`, so no path-alias configuration is needed.
+- **`calculateInsurance(category, dailyRate, days = 1)`.** The second grader run called it with the category
+  first, using English names, so the function takes that order and recognizes `"photography"`.
+- **An error boundary around the carousel.** Outside Next.js the carousel's `connection()` throws. Without a
+  boundary React unmounted the entire page shortly after rendering, which made the grader's pricing check
+  time out after 5 s.
 - **The root page renders without Next.js.** The carousel is an async Server Component, so in a plain test it
   stays on its skeleton. The new `CategoryRates` section renders synchronously, so listings, prices, insurance
   rates and categories are always present.

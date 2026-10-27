@@ -110,7 +110,7 @@ export default async function GearPage({ params }: PageProps<"/gear/[id]">) {
             <p className="mt-1 inline-flex items-center gap-1 text-sm text-muted-foreground">
               <ShieldCheck className="size-4 text-brand" />
               Seguro inteligente: {Math.round(getInsuranceRate(item.category) * 100)}% de la tarifa (
-              {formatCurrency(calculateInsurance(item.dailyRate, 1, item.category))} / día)
+              {formatCurrency(calculateInsurance(item.category, item.dailyRate))} / día)
             </p>
             <div className="mt-6">
               <Suspense fallback={<RentalPanelSkeleton />}>

@@ -26,6 +26,7 @@ export default defineConfig({
         "src/services/inventoryService.ts",
         "src/services/rentalService.ts",
         "src/components/features/CategoryRates.tsx",
+        "src/components/shared/SectionErrorBoundary.tsx",
         "src/components/features/RentalFlow/**",
       ],
       // Re-export-only files: nothing to execute.

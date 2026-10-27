@@ -69,7 +69,7 @@ export function calculateRentalPrice(
 ): PriceBreakdown {
   const days = countRentalDays(from, to);
   const subtotalCents = toCents(dailyRate) * days;
-  const insuranceCents = toCents(calculateInsurance(dailyRate, days, category));
+  const insuranceCents = toCents(calculateInsurance(category, dailyRate, days));
   const feeCents = Math.round(subtotalCents * SERVICE_FEE_RATE);
   const subtotal = fromCents(subtotalCents);
   const insuranceRate = getInsuranceRate(category);

@@ -484,8 +484,11 @@ Every rental includes insurance, priced by category: photography and video equip
 | `fotografia-video` | **20%** of the rental (`PHOTOGRAPHY_INSURANCE_RATE`) | Sony A7 IV at $65/day: $195 + **$39** insurance + $15.60 fee = **$249.60** |
 | Every other category | **10%** (`DEFAULT_INSURANCE_RATE`) | Starboard Touring at $45/day: $135 + **$13.50** insurance + $10.80 fee = **$159.30** |
 
-- `getInsuranceRate(category)` returns the rate. A new category gets 10% automatically.
-- `calculateInsurance(dailyRate, days, category)` returns rate × daily rate × days, rounded to whole cents.
+- `getInsuranceRate(category)` returns the rate. It accepts the app's ids (`fotografia-video`) and plain
+  names in English or Spanish (`"photography"`, `"Fotografía y Video"`). Any other category, including a new
+  one, gets 10%.
+- `calculateInsurance(category, dailyRate, days = 1)` returns rate × daily rate × days, rounded to whole
+  cents.
   It throws a `RangeError` for a negative or non-finite rate, or for days that aren't a positive whole
   number.
 - `calculateRentalPrice({ dailyRate, deposit, category }, from, to)` adds it as its own line item, "Seguro
@@ -551,6 +554,8 @@ in production.
 
 - `global-error.tsx` replaces the whole document.
 - `app/error.tsx` (covers the home page) and the `error.tsx` of the category and gear routes show `ErrorState` with a retry button.
+- `SectionErrorBoundary` (`name="hero"`) wraps the home carousel. A carousel failure removes only the
+  carousel instead of unmounting the whole page.
 - `ImageErrorBoundary` covers a single image.
 - `not-found.tsx` handles unknown categories and items, through `notFound()`.
 

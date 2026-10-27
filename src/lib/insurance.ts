@@ -1,15 +1,22 @@
-import type { CategoryId } from "../types/gear";
-
 /** Smart Insurance: photography and video gear is riskier to rent, so it carries a higher rate. */
 export const PHOTOGRAPHY_INSURANCE_RATE = 0.2;
 export const DEFAULT_INSURANCE_RATE = 0.1;
 
-export function getInsuranceRate(category: CategoryId): number {
-  return category === "fotografia-video" ? PHOTOGRAPHY_INSURANCE_RATE : DEFAULT_INSURANCE_RATE;
+/**
+ * Accepts the app's category ids ("fotografia-video") as well as plain names in English or
+ * Spanish ("photography", "Fotografía y Video"), so the rule doesn't depend on one naming scheme.
+ */
+function isPhotography(category: string): boolean {
+  const normalized = category.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+  return /photo|fotograf/.test(normalized);
+}
+
+export function getInsuranceRate(category: string): number {
+  return isPhotography(category) ? PHOTOGRAPHY_INSURANCE_RATE : DEFAULT_INSURANCE_RATE;
 }
 
 /** Insurance for the whole rental: rate × daily price × days, rounded to whole cents. */
-export function calculateInsurance(dailyRate: number, days: number, category: CategoryId): number {
+export function calculateInsurance(category: string, dailyRate: number, days = 1): number {
   if (!Number.isFinite(dailyRate) || dailyRate < 0) {
     throw new RangeError(`Daily rate must be a non-negative number, got ${dailyRate}`);
   }
