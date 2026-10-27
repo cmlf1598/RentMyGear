@@ -1,7 +1,7 @@
-import { format, parseISO, startOfDay } from "date-fns";
+import { differenceInWeeks, format, parseISO, startOfDay } from "date-fns";
 import { z } from "zod";
 
-import { countRentalDays, isRangeAvailable, MAX_RENTAL_DAYS } from "@/lib/date-utils";
+import { isRangeAvailable, MAX_RENTAL_DAYS } from "@/lib/date-utils";
 import type { BookedRange } from "@/types/gear";
 
 export interface RentalSchemaOptions {
@@ -52,7 +52,7 @@ export function createRentalRequestSchema({ now = () => new Date(), bookedRanges
         });
         return;
       }
-      if (countRentalDays(value.from, value.to) > MAX_RENTAL_DAYS) {
+      if (differenceInWeeks(value.to, value.from) >= 1) {
         ctx.addIssue({
           code: "custom",
           path: ["to"],

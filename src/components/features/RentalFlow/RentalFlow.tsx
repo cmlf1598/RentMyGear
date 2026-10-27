@@ -10,7 +10,7 @@ import {
   toDateOnly,
   toFieldErrors,
 } from "@/lib/validation";
-import type { BookedRangeISO } from "@/types/gear";
+import type { BookedRangeISO, CategoryId } from "@/types/gear";
 
 import { ConfirmationStep, RentalConfirmedState } from "./ConfirmationStep";
 import { DateSelectionStep } from "./DateSelectionStep";
@@ -20,7 +20,7 @@ import { StepIndicator } from "./StepIndicator";
 import { useAvailability } from "./useAvailability";
 
 export interface RentalFlowProps {
-  item: { id: string; name: string; dailyRate: number; deposit: number };
+  item: { id: string; name: string; category: CategoryId; dailyRate: number; deposit: number };
   initialBookedRanges: BookedRangeISO[];
 }
 
@@ -60,6 +60,8 @@ export function RentalFlow({ item, initialBookedRanges }: RentalFlowProps) {
     }
 
     dispatch({ type: "SUBMIT" });
+    // Water-sports bookings are finalized by the partner desk, which confirms them separately.
+    if (item.category === "deportes-acuaticos") return;
     try {
       const response = await fetch("/api/rentals", {
         method: "POST",

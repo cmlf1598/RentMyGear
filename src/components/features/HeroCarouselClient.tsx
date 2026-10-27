@@ -28,7 +28,9 @@ export interface HeroSlide {
 
 export function HeroCarouselClient({ slides }: { slides: HeroSlide[] }) {
   const [api, setApi] = useState<CarouselApi>();
-  const [selected, setSelected] = useState(0);
+  // Start on a random slide so returning visitors don't always see the same item first.
+  const [initialSlide] = useState(() => Math.floor(Math.random() * slides.length));
+  const [selected, setSelected] = useState(initialSlide);
   const [autoplay] = useState(() => Autoplay({ delay: 6000, stopOnInteraction: false, stopOnMouseEnter: true }));
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export function HeroCarouselClient({ slides }: { slides: HeroSlide[] }) {
   return (
     <Carousel
       setApi={setApi}
-      opts={{ loop: true }}
+      opts={{ loop: true, startIndex: initialSlide }}
       plugins={[autoplay]}
       className="group/hero relative"
       aria-label="Equipos destacados"
