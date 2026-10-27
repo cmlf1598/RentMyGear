@@ -32,6 +32,7 @@ export function DateSelectionStep({
 }: DateSelectionStepProps) {
   const [today] = useState(() => startOfDay(new Date()));
   const complete = Boolean(range?.from && range.to);
+  const days = range?.from && range.to ? countRentalDays(range.from, range.to) : 0;
   const errors = [...new Set(Object.values(fieldErrors))];
 
   return (
@@ -76,7 +77,7 @@ export function DateSelectionStep({
           <span>
             {range.to ? formatDateRange(range.from, range.to) : "Elige la fecha de devolución"}
             {range.to && (
-              <span className="text-muted-foreground"> · {countRentalDays(range.from, range.to)} días</span>
+              <span className="text-muted-foreground"> · {days} {days === 1 ? "día" : "días"}</span>
             )}
           </span>
         ) : (
